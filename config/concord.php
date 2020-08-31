@@ -23,6 +23,12 @@ return [
                     ]
                 ]
             ],
+            'currency'    => [
+                'code'   => 'EUR',
+                'sign'   => '€',
+                // For the format_price() template helper method:
+                'format' => '%1$g%2$s' // see sprintf. Amount is the first argument, currency is the second
+            ]
         ]
     ]
 ];

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Schema;
+use Vanilo\Category\Contracts\Taxon as TaxonContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+        $this->app->concord->registerModel(
+            TaxonContract::class, \App\Ctic\Category\Models\Taxon::class
+        );
     }
 
     /**

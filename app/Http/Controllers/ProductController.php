@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductIndexRequest;
+use Jenssegers\Agent\Agent;
 use Vanilo\Category\Contracts\Taxon;
 use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\Framework\Search\ProductFinder;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Properties\Models\PropertyProxy;
+use function GuzzleHttp\Psr7\str;
 
 class ProductController extends Controller
 {
@@ -21,7 +23,8 @@ class ProductController extends Controller
 
     public function index(ProductIndexRequest $request, string $taxonomyName = null, Taxon $taxon = null)
     {
-        $taxonomies = TaxonomyProxy::get();
+        $taxonomies = TaxonomyProxy::first();
+        $taxons = ($taxonomies) ? $taxonomies->rootLevelTaxons() : [];
         $properties = PropertyProxy::get();
 
         if ($taxon) {
@@ -32,9 +35,12 @@ class ProductController extends Controller
             $this->productFinder->havingPropertyValuesByName($property, $values);
         }
 
+        $agent = new Agent();
+
         return view('product.index', [
             'products'   => $this->productFinder->getResults(),
-            'taxonomies' => $taxonomies,
+            'agent'      => $agent,
+            'taxons'     => $taxons,
             'taxon'      => $taxon,
             'properties' => $properties,
             'filters'    => $request->filters($properties)

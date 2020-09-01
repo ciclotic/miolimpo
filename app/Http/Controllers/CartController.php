@@ -14,7 +14,7 @@ class CartController extends Controller
         Cart::addItem($product);
         flash()->success($product->name . ' has been added to cart');
 
-        return redirect()->route('cart.show');
+        return redirect()->route('cart.show', $this->getCommonParameters());
     }
 
     public function remove(CartItem $cart_item)
@@ -22,7 +22,7 @@ class CartController extends Controller
         Cart::removeItem($cart_item);
         flash()->info($cart_item->getBuyable()->getName() . ' has been removed from cart');
 
-        return redirect()->route('cart.show');
+        return redirect()->route('cart.show', $this->getCommonParameters());
     }
 
     public function update(CartItem $cart_item, Request $request)
@@ -33,11 +33,11 @@ class CartController extends Controller
 
         flash()->info($cart_item->getBuyable()->getName() . ' has been updated');
 
-        return redirect()->route('cart.show');
+        return redirect()->route('cart.show', $this->getCommonParameters());
     }
 
     public function show()
     {
-        return view('cart.show');
+        return view('cart.show', $this->getCommonParameters());
     }
 }

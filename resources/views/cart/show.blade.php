@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    <li class="breadcrumb-item"><a href="{{ route('product.index') }}">All Products</a></li>
-    <li class="breadcrumb-item">Cart</li>
+    <li class="breadcrumb-item"><a href="{{ route('product.index') }}">{{ __('ctic_shop.all_products') }}</a></li>
+    <li class="breadcrumb-item">{{ __('ctic_shop.cart') }}</li>
 @stop
 
 @section('content')
@@ -42,7 +42,7 @@
                                     <tr>
                                         <td width="55"><img src="{{ $item->product->getThumbnailUrl() ?: '/images/product.jpg' }}" class="product-image"/></td>
                                         <td>
-                                            <a href="{{ route('product.show', $item->product) }}">
+                                            <a href="{{ route('product.show', [$item->product->taxons->first()->slug, $item->product]) }}">
                                                 {{ $item->product->getName() }}
                                             </a></td>
                                         <td>{{ format_price($item->price) }}</td>

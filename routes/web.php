@@ -11,29 +11,29 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'shop', 'as' => 'product.'], function() {
-    Route::get('index', 'ProductController@index')->name('index');
-    Route::get('c/{taxonomyName}/{taxon}', 'ProductController@index')->name('category');
-    Route::get('p/{product}', 'ProductController@show')->name('show');
+Route::group(['as' => 'product.'], function() {
+    Route::get('/', 'ProductController@index')->name('index');
+    Route::get('categoria/{taxon}', 'ProductController@index')->name('category');
+    Route::get('producto/{taxon}/{product}', 'ProductController@show')->name('show');
 });
 
-Route::group(['prefix' => 'cart', 'as' => 'cart.'], function() {
-    Route::get('show', 'CartController@show')->name('show');
+Route::group(['prefix' => 'cesta', 'as' => 'cart.'], function() {
+    Route::get('ver', 'CartController@show')->name('show');
     Route::post('add/{product}', 'CartController@add')->name('add');
     Route::post('update/{cart_item}', 'CartController@update')->name('update');
     Route::post('remove/{cart_item}', 'CartController@remove')->name('remove');
 });
 
-Route::group(['prefix' => 'checkout', 'as' => 'checkout.'], function() {
-    Route::get('show', 'CheckoutController@show')->name('show');
+Route::group(['prefix' => 'caja', 'as' => 'checkout.'], function() {
+    Route::get('ver', 'CheckoutController@show')->name('show');
     Route::post('submit', 'CheckoutController@submit')->name('submit');
 });
 

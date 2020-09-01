@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductIndexRequest;
-use Jenssegers\Agent\Agent;
 use Vanilo\Category\Contracts\Taxon;
-use Vanilo\Category\Models\TaxonomyProxy;
 use Vanilo\Framework\Search\ProductFinder;
 use Vanilo\Product\Contracts\Product;
 use Vanilo\Properties\Models\PropertyProxy;
@@ -21,10 +19,8 @@ class ProductController extends Controller
         $this->productFinder = $productFinder;
     }
 
-    public function index(ProductIndexRequest $request, string $taxonomyName = null, Taxon $taxon = null)
+    public function index(ProductIndexRequest $request, Taxon $taxon = null)
     {
-        $taxonomies = TaxonomyProxy::first();
-        $taxons = ($taxonomies) ? $taxonomies->rootLevelTaxons() : [];
         $properties = PropertyProxy::get();
 
         if ($taxon) {
@@ -35,20 +31,18 @@ class ProductController extends Controller
             $this->productFinder->havingPropertyValuesByName($property, $values);
         }
 
-        $agent = new Agent();
-
-        return view('product.index', [
-            'products'   => $this->productFinder->getResults(),
-            'agent'      => $agent,
-            'taxons'     => $taxons,
-            'taxon'      => $taxon,
-            'properties' => $properties,
-            'filters'    => $request->filters($properties)
-        ]);
+        return view('product.index', array_merge(
+            [
+                'products'   => $this->productFinder->getResults(),
+                'properties' => $properties,
+                'filters'    => $request->filters($properties)
+            ],
+            $this->getCommonParameters($taxon)
+        ));
     }
 
-    public function show(Product $product)
+    public function show(Taxon $taxon, Product $product)
     {
-        return view('product.show', ['product' => $product]);
+        return view('product.show', array_merge(['product' => $product], $this->getCommonParameters()));
     }
 }

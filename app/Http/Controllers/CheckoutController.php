@@ -35,10 +35,13 @@ class CheckoutController extends Controller
             $checkout->setCart($this->cart);
         }
 
-        return view('checkout.show', [
-            'checkout'  => $checkout,
-            'countries' => CountryProxy::all()
-        ]);
+        return view('checkout.show', array_merge(
+            [
+                'checkout'  => $checkout,
+                'countries' => CountryProxy::all()
+            ],
+            $this->getCommonParameters()
+        ));
     }
 
     public function submit(CheckoutRequest $request, OrderFactory $orderFactory)
@@ -50,7 +53,7 @@ class CheckoutController extends Controller
         $order = $orderFactory->createFromCheckout($this->checkout);
         $this->cart->destroy();
 
-        return view('checkout.thankyou', ['order' => $order]);
+        return view('checkout.thankyou', array_merge(['order' => $order], $this->getCommonParameters()));
     }
 
 }

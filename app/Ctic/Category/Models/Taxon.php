@@ -6,6 +6,11 @@ use Vanilo\Framework\Models\Taxon as BaseTaxon;
 
 class Taxon extends BaseTaxon
 {
+    public function getRouteKeyName()
+    {
+        return $this->getSlugKeyName();
+    }
+
     public function isInTaxonTree(Taxon $taxon)
     {
         $taxonsTree = '--' . $taxon->id . '-';

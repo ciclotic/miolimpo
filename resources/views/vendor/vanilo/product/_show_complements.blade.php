@@ -7,24 +7,22 @@
                 <td>
                     @foreach($product->complementProducts as $complementProduct)
                         <span class="badge badge-pill badge-dark">
-                            {{ $complementProduct->complement_product->name }}:
-                            {{ __('ctic_admin.is_selected') }}: {{ ($complementProduct->selected) ? __('ctic_admin.yes') : __('ctic_admin.no') }}
+                            {{ $complementProduct->name }}:
+                            {{ __('ctic_admin.is_selected') }}: {{ ($complementProduct->pivot->selected) ? __('ctic_admin.yes') : __('ctic_admin.no') }}
                         </span>
                     @endforeach
                 </td>
                 <td class="text-right">
                     <button type="button" data-toggle="modal"
-                            data-target="#complements-assign-to-model-modal"
-                            class="btn btn-outline-success btn-sm">{{ __('Manage') }}</button>
+                            data-target="#complements-modal"
+                            class="btn btn-outline-success btn-sm">{{ __('ctic_admin.edit') }}</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
 
-{{-- @include('vanilo::complement.assign._form', [
-    'for' => 'product',
-    'forId' => $product->id,
-    'assignments' => $product->complementProducts,
-    'products' => $products
-]) --}}
+@include('vanilo::complement._form', [
+    'product' => $product,
+    'productsElegibleAsComplement' => $productsElegibleAsComplement
+])

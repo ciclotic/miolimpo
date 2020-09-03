@@ -37,9 +37,8 @@ Route::group(['prefix' => 'caja', 'as' => 'checkout.'], function() {
     Route::post('submit', 'CheckoutController@submit')->name('submit');
 });
 
-Route::group(['prefix' => 'complement', 'as' => 'admin.'], function() {
-    Route::post('/{complement_product}/value', 'Admin/ComplementController@store')->name('complement_value.store');
-    Route::put('/{complement_product}/value/{product}', 'Admin/ComplementController@update')->name('complement_value.update');
-    Route::delete('/{complement_product}/value/{product}', 'Admin/ComplementController@destroy')->name('complement_value.destroy');
-    Route::put('/sync/{for}/{forId}', 'Admin/ComplementController@sync')->name('complement_value.sync');
+Route::group(['prefix' => 'admin/complement', 'as' => 'admin.'], function() {
+    Route::post('/{main_product}/{complement_product}/{selected}', 'Admin\\ComplementController@store')->name('complement.store');
+    Route::put('/{main_product}/{complement_product}/{selected}', 'Admin\\ComplementController@update')->name('complement.update');
+    Route::delete('/{main_product}/{complement_product}', 'Admin\\ComplementController@remove')->name('complement.remove');
 });

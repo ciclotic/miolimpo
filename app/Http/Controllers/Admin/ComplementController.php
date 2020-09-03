@@ -2,77 +2,53 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Konekt\AppShell\Http\Controllers\BaseController;
-use Vanilo\Framework\Contracts\Requests\CreatePropertyValueForm;
-use Vanilo\Framework\Contracts\Requests\SyncModelPropertyValues;
-use Vanilo\Framework\Contracts\Requests\UpdatePropertyValue;
-use Vanilo\Properties\Contracts\Property;
-use Vanilo\Properties\Contracts\PropertyValue;
-use Vanilo\Properties\Models\PropertyProxy;
-use Vanilo\Properties\Models\PropertyValueProxy;
+use App\Http\Controllers\Controller;
+use App\Ctic\Product\Models\Product;
 
-class ComplementController extends BaseController
+class ComplementController extends Controller
 {
-    public function store(integer $complementProduct, Request $request)
+    public function store($mainProduct, $complementProduct, bool $selected)
     {
         try {
-            $propertyValue = PropertyValueProxy::create(
-                array_merge(
-                    $request->all(),
-                    ['property_id' => $property->id]
-                )
-            );
+            $product = Product::find($mainProduct);
+            $product->complementProducts()->attach($complementProduct, ['selected' => $selected]);
 
-            flash()->success(__(':title :property has been created', [
-                'title'    => $propertyValue->title,
-                'property' => $property->name
-            ]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.property.show', $property));
+        return response()->json('complement added');
     }
 
-    public function update(integer $complementProduct, Product $product, UpdatePropertyValue $request)
+    public function update($mainProduct, $complementProduct, bool $selected)
     {
         try {
-            $property_value->update($request->all());
+            $product = Product::find($mainProduct);
+            $product->complementProducts()->updateExistingPivot($complementProduct, ['selected' => $selected]);
 
-            flash()->success(__(':title has been updated', ['title' => $property_value->title]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('vanilo.property.show', $property));
+        return response()->json('complement updated');
     }
 
-    public function destroy(integer $complementProduct, Product $product)
+    public function remove($mainProduct, $complementProduct)
     {
         try {
-            $title = $property_value->title;
-            $property_value->delete();
+            $product = Product::find($mainProduct);
+            $product->complementProducts()->detach($complementProduct);
 
-            flash()->warning(__(':title has been deleted', ['title' => $title]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->back();
         }
 
-        return redirect(route('vanilo.property.show', $property));
-    }
-
-    public function sync(SyncModelPropertyValues $request, $for, $forId)
-    {
-        $model = $request->getFor();
-        $model->propertyValues()->sync($request->getPropertyValueIds());
-
-        return redirect(route(sprintf('vanilo.%s.show', shorten(get_class($model))), $model));
+        return response()->json('complement deleted');
     }
 }

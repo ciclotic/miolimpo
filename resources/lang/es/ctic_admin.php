@@ -4,6 +4,13 @@ return [
 
     'yes'     => 'Si',
     'no'      => 'No',
+    'close'   => 'Cerrar',
+    'save'    => 'Guardar',
+    'add'     => 'Añadir',
+    'edit'    => 'Editar',
+    'delete'  => 'Eliminar',
+    'add_complement'        => 'Añadir complemento',
+    'complement_selected'   => 'Complemento seleccionado',
     'price_2' => 'Precio 2',
     'price_3' => 'Precio 3',
     'price_4' => 'Precio 4',

@@ -78,11 +78,32 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
+        $products = ProductProxy::all();
+        $productsElegibleAsComplement = [];
+        foreach($products as $optionComplementProduct) {
+            if ($product->id === $optionComplementProduct->id) {
+                continue;
+            }
+
+            $isComplementYet = false;
+            foreach ($product->complementProducts as $complementProduct) {
+                if ($complementProduct->id === $optionComplementProduct->id) {
+                    $isComplementYet = true;
+                }
+            }
+
+            if ($isComplementYet) {
+                continue;
+            }
+
+            $productsElegibleAsComplement[] = $optionComplementProduct;
+        }
+
         return view('vanilo::product.show', [
             'product'    => $product,
             'taxonomies' => TaxonomyProxy::all(),
             'properties' => PropertyProxy::all(),
-            'products'   => ProductProxy::all(),
+            'productsElegibleAsComplement'   => $productsElegibleAsComplement,
         ]);
     }
 

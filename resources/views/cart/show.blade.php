@@ -42,7 +42,7 @@
                                     <tr>
                                         <td width="55"><img src="{{ $item->product->getThumbnailUrl() ?: '/images/product.jpg' }}" class="product-image"/></td>
                                         <td>
-                                            <a href="{{ route('product.show', [$item->product->taxons->first()->slug, $item->product]) }}">
+                                            <a href="{{ route('product.show', [($item->product->taxons->first()) ? $item->product->taxons->first()->slug : $taxons->first()->slug, $item->product]) }}">
                                                 {{ $item->product->getName() }}
                                             </a></td>
                                         <td>{{ format_price($item->price) }}</td>

@@ -6,12 +6,26 @@ use Illuminate\Http\Request;
 use Vanilo\Cart\Contracts\CartItem;
 use Vanilo\Cart\Facades\Cart;
 use Vanilo\Product\Contracts\Product;
+use Vanilo\Product\Models\ProductProxy;
 
 class CartController extends Controller
 {
-    public function add(Product $product)
+    public function add(Product $product, Request $request)
     {
-        Cart::addItem($product);
+        $complementProducts = $request->get('products-to-complements-selected', []);
+
+        if (! is_array($complementProducts) && $complementProducts) {
+            Cart::addItem(ProductProxy::find($complementProducts));
+        } else {
+            Cart::addItem($product);
+
+            if (is_array($complementProducts)) {
+                foreach ($complementProducts as $complementProductId => $complementProductValue) {
+                    Cart::addItem(ProductProxy::find($complementProductId));
+                }
+            }
+        }
+
         flash()->success($product->name . ' has been added to cart');
 
         return redirect()->route('cart.show', $this->getCommonParameters());

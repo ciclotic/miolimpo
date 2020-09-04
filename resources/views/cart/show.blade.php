@@ -45,14 +45,14 @@
                                             <a href="{{ route('product.show', [($item->product->taxons->first()) ? $item->product->taxons->first()->slug : $taxons->first()->slug, $item->product]) }}">
                                                 {{ $item->product->getName() }}
                                             </a></td>
-                                        <td>{{ format_price($item->price) }}</td>
+                                        <td>{{ format_price(number_format($item->price, 2, ',', '.')) }}</td>
                                         <td>
                                             <form class="form-inline" action="{{ route('cart.update', $item) }}" method="POST">
                                                 @csrf
                                                 <input type="text" name="qty" value="{{ $item->quantity }}" class="w-25" />
                                             </form>
                                         </td>
-                                        <td>{{ format_price($item->total) }}</td>
+                                        <td>{{ format_price(number_format($item->total, 2, ',', '.')) }}</td>
                                         <td>
                                             <form action="{{ route('cart.remove', $item) }}"
                                                   style="display: inline-block" method="post">
@@ -67,7 +67,7 @@
                                 <tr>
                                     <th colspan="4"></th>
                                     <th>
-                                        {{ format_price(Cart::total()) }}
+                                        {{ format_price(number_format(Cart::total(), 2, ',', '.')) }}
                                     </th>
                                     <th></th>
                                 </tr>

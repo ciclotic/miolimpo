@@ -11994,8 +11994,40 @@ a.text-dark:focus {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   font-family: Roboto-Regular,sans-serif;
+}
+
+a {
+  color: #ff9320;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: #ff9320;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.text-primary {
+  color: #ff9320 !important;
+}
+
+.btn-primary {
+  background-color: #ff9320 !important;
+  border-color: #ff9320 !important;
+}
+
+.container-content,
+.container-menu {
+  background-color: #ffffff;
+}
+
+.container-content {
+  padding: 20px;
+  border: 1px solid #ebebeb;
 }
 
 .navbar {

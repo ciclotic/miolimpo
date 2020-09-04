@@ -13,15 +13,16 @@ class CartController extends Controller
     public function add(Product $product, Request $request)
     {
         $complementProducts = $request->get('products-to-complements-selected', []);
+        $quantity = $request->get('quantity', 1);
 
         if (! is_array($complementProducts) && $complementProducts) {
-            Cart::addItem(ProductProxy::find($complementProducts));
+            Cart::addItem(ProductProxy::find($complementProducts), $quantity);
         } else {
-            Cart::addItem($product);
+            Cart::addItem($product, $quantity);
 
             if (is_array($complementProducts)) {
                 foreach ($complementProducts as $complementProductId => $complementProductValue) {
-                    Cart::addItem(ProductProxy::find($complementProductId));
+                    Cart::addItem(ProductProxy::find($complementProductId), $quantity);
                 }
             }
         }

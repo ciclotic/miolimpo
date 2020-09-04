@@ -35,8 +35,39 @@ $primaryColor: #ff9320;
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   font-family: Roboto-Regular,sans-serif;
+}
+
+a {
+  color: $primaryColor;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: $primaryColor;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.text-primary {
+  color: $primaryColor !important;
+}
+
+.btn-primary {
+  background-color: $primaryColor !important;
+  border-color: $primaryColor !important;
+}
+
+.container-content, .container-menu {
+  background-color: #ffffff;
+}
+
+.container-content {
+  padding: 20px;
+  border: 1px solid #ebebeb;
 }
 
 //

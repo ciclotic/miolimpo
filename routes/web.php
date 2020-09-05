@@ -42,3 +42,11 @@ Route::group(['prefix' => 'admin/complement', 'as' => 'admin.'], function() {
     Route::put('/{main_product}/{complement_product}/{selected}', 'Admin\\ComplementController@update')->name('complement.update');
     Route::delete('/{main_product}/{complement_product}', 'Admin\\ComplementController@remove')->name('complement.remove');
 });
+
+// ADMIN ROUTES
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::resource('group', 'Admin\\GroupController');
+});
+
+// END ADMIN ROUTES

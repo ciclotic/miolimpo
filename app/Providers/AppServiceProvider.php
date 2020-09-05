@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Ctic\Product\Http\Requests\CreateGroup;
+use App\Ctic\Product\Http\Requests\UpdateGroup;
+use App\Ctic\Product\Models\Group;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 use Vanilo\Category\Contracts\Taxon as TaxonContract;
@@ -10,6 +13,11 @@ use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $requests = [
+        CreateGroup::class,
+        UpdateGroup::class,
+    ];
+
     /**
      * Bootstrap any application services.
      *
@@ -26,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->concord->registerModel(
             ProductContract::class, \App\Ctic\Product\Models\Product::class
         );
+        $this->app->concord->registerModel(\App\Ctic\Product\Contracts\Group::class, Group::class);
     }
 
     /**

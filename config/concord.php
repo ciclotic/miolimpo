@@ -29,6 +29,7 @@ return [
                 // For the format_price() template helper method:
                 'format' => '%1$s %2$s' // see sprintf. Amount is the first argument, currency is the second
             ]
-        ]
+        ],
+        \App\Ctic\Product\Providers\ModuleServiceProvider::class,
     ]
 ];

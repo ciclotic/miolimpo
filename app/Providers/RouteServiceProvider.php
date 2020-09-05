@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Konekt\Menu\Facades\Menu;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        $this->addMenuItems();
     }
 
     /**
@@ -69,5 +72,13 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function addMenuItems()
+    {
+        if ($menu = Menu::get('appshell')) {
+            $shop = $menu->getItem('shop');
+            $shop->addSubItem('product_groups', __('ctic_admin.groups'), ['route' => 'admin.group.index'])->data('icon', 'format-list-bulleted');
+        }
     }
 }

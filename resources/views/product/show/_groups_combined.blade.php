@@ -31,11 +31,11 @@
                                 </div>
                             </div>
                             @if (\App\Ctic\Product\Models\Product::ARCHETYPES[$groupProduct->archetype] === 'multiple')
-                                @include('product.show._group_multiple', ['product' => $groupProduct])
+                                @include('product.show._group_complements_multiple', ['product' => $groupProduct])
                             @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$groupProduct->archetype] === 'unique')
-                                @include('product.show._group_unique', ['product' => $groupProduct])
+                                @include('product.show._group_complements_unique', ['product' => $groupProduct])
                             @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$groupProduct->archetype] === 'various')
-                                @include('product.show._group_various', ['product' => $groupProduct])
+                                @include('product.show._group_complements_various', ['product' => $groupProduct])
                             @endif
                         @endforeach
                     </div>

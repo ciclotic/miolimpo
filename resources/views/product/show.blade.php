@@ -9,15 +9,16 @@
 @stop
 
 @section('content')
-    @if (\App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'basic')
+    <?php $archetype = ($product->archetype)? $product->archetype : 0 ?>
+    @if (\App\Ctic\Product\Models\Product::ARCHETYPES[$archetype] === 'basic')
         @include('product.show.basic')
-    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'multiple')
+    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$archetype] === 'multiple')
         @include('product.show.multiple')
-    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'unique')
+    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$archetype] === 'unique')
         @include('product.show.unique')
-    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'various')
+    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$archetype] === 'various')
         @include('product.show.various')
-    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'combined')
+    @elseif (\App\Ctic\Product\Models\Product::ARCHETYPES[$archetype] === 'combined')
         @include('product.show.combined')
     @else
         <div class="container">

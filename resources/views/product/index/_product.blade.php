@@ -11,7 +11,8 @@
 
     <div class="card-body">
         <h5><a href="{{ route('product.show', [($product->taxons->first()) ? $product->taxons->first()->slug : $taxons->first()->slug, $product]) }}">{{ $product->name }}</a></h5>
-        @if (\App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'unique' && count($product->complementProducts) > 0)
+        <?php $archetype = ($product->archetype)? $product->archetype : 0 ?>
+        @if (\App\Ctic\Product\Models\Product::ARCHETYPES[$archetype] === 'unique' && count($product->complementProducts) > 0)
             <?php $minProductPrice = $product->complementProducts[0]->price ?>
             @foreach ($product->complementProducts as $complementProduct)
                 @if ($complementProduct->price < $minProductPrice)

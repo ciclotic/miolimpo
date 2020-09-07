@@ -3,12 +3,8 @@
         @include('product.show._photo')
 
         <div class="col-md-6">
-            <form action="{{ route('cart.add', $product) }}" method="post" class="mb-4">
-                {{ csrf_field() }}
-
-                @include('product.show._buy_combined')
-                @include('product.show._groups_combined')
-            </form>
+            @include('product.show._buy_combined')
+            @include('product.show._groups_combined')
 
             @unless(empty($product->propertyValues))
                 <table class="table table-sm">

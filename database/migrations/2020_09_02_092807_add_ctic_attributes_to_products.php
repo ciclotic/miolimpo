@@ -68,7 +68,7 @@ class AddCticAttributesToProducts extends Migration
                 'iva',
                 'manage_stock',
                 'send',
-                'type'
+                'archetype'
             ]);
         });
     }

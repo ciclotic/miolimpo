@@ -1,9 +1,13 @@
 @foreach($product->complementProducts as $complementProduct)
     @if($agent->isMobile())
-        <div class="row mt-2">
+        <div class="row mt-2 group-product-complement-{{ $groupProduct->id }}">
             <div class="col-md-1 col-1 mt-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" {{ ($complementProduct->pivot->selected)? 'checked' : '' }} name="products-to-complements-selected" value="{{ $complementProduct->id }}" onchange="changeComplement({{ $complementProduct->id }}, '{{ number_format($product->price, 2, ',', '.') }}', '{{ number_format($complementProduct->price, 2, ',', '.') }}')">
+                    @if ($groupProduct->pivot->price > 0)
+                        <input class="form-check-input" type="radio" {{ ($complementProduct->pivot->selected)? 'checked' : '' }} name="products-to-complements-selected" value="{{ $complementProduct->id }}" onchange="changeComplementFromGroupProduct({{ $groupProduct->id }}, {{ $complementProduct->id }}, '{{ number_format($product->price, 2, ',', '.') }}', '{{ number_format($complementProduct->price, 2, ',', '.') }}')">
+                    @else
+                        <input class="form-check-input" type="radio" {{ ($complementProduct->pivot->selected)? 'checked' : '' }} name="products-to-complements-selected" value="{{ $complementProduct->id }}">
+                    @endif
                 </div>
             </div>
             <div class="col-md-2 col-3">
@@ -13,14 +17,20 @@
                 {{ $complementProduct->name }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 col-12 font-weight-bold text-primary btn-lg complement-price text-center">{{ format_price(number_format($complementProduct->price, 2, ',', '.')) }}</div>
-        </div>
+        @if ($groupProduct->pivot->price > 0)
+            <div class="row">
+                <div class="col-md-3 col-12 font-weight-bold text-primary btn-lg complement-price text-center">{{ format_price(number_format($complementProduct->price, 2, ',', '.')) }}</div>
+            </div>
+        @endif
     @else
-        <div class="row mt-2">
+        <div class="row mt-2 group-product-complement-{{ $groupProduct->id }}">
             <div class="col-md-1 col-1 mt-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" {{ ($complementProduct->pivot->selected)? 'checked' : '' }} name="products-to-complements-selected" value="{{ $complementProduct->id }}" onchange="changeComplement({{ $complementProduct->id }}, '{{ number_format($product->price, 2, ',', '.') }}', '{{ number_format($complementProduct->price, 2, ',', '.') }}')">
+                    @if ($groupProduct->pivot->price > 0)
+                        <input class="form-check-input" type="radio" {{ ($complementProduct->pivot->selected)? 'checked' : '' }} name="products-to-complements-selected" value="{{ $complementProduct->id }}" onchange="changeComplementFromGroupProduct({{ $groupProduct->id }}, {{ $complementProduct->id }}, '{{ number_format($product->price, 2, ',', '.') }}', '{{ number_format($complementProduct->price, 2, ',', '.') }}')">
+                    @else
+                        <input class="form-check-input" type="radio" {{ ($complementProduct->pivot->selected)? 'checked' : '' }} name="products-to-complements-selected" value="{{ $complementProduct->id }}">
+                    @endif
                 </div>
             </div>
             <div class="col-md-2 col-3">
@@ -29,7 +39,9 @@
             <div class="col-md-6 col-4 mt-2 complement-name">
                 {{ $complementProduct->name }}
             </div>
-            <div class="col-md-3 col-3 font-weight-bold text-primary btn-lg complement-price">{{ format_price(number_format($complementProduct->price, 2, ',', '.')) }}</div>
+            @if ($groupProduct->pivot->price > 0)
+                <div class="col-md-3 col-3 font-weight-bold text-primary btn-lg complement-price">{{ format_price(number_format($complementProduct->price, 2, ',', '.')) }}</div>
+            @endif
         </div>
     @endif
 @endforeach

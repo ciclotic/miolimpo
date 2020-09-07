@@ -17,7 +17,6 @@ class UpdateCticAttributesToGroups extends Migration
     {
         Schema::table('groups', function (Blueprint $table) {
             $table->dropColumn([
-                'deleted_at',
                 'created_at',
                 'updated_at',
             ]);

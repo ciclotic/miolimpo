@@ -19,6 +19,12 @@ class Group extends Model implements GroupContract
         'collapsed',
     ];
 
+    protected $casts = [
+        'mandatory'     => 'boolean',
+        'unique_group'  => 'boolean',
+        'collapsed'     => 'boolean',
+    ];
+
     public function products()
     {
         return $this->belongsToMany('App\Ctic\Product\Models\Product');

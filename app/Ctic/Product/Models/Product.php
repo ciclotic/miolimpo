@@ -16,7 +16,12 @@ class Product extends BaseProduct
 
     public function groups()
     {
-        return $this->belongsToMany('App\Ctic\Product\Models\Group')->withPivot('order', 'price', 'group_modifiable');
+        return $this->hasMany('App\Ctic\Product\Models\Group');
+    }
+
+    public function groupsAsElement()
+    {
+        return $this->belongsToMany('App\Ctic\Product\Models\Group', 'product_groups', 'product_id', 'group_id')->withPivot('order', 'price', 'group_modifiable');
     }
 
     public function complementProducts()
@@ -27,5 +32,10 @@ class Product extends BaseProduct
     public function complementOfProducts()
     {
         return $this->belongsToMany('App\Ctic\Product\Models\Product', 'complement_products', 'complement_product_id', 'main_product_id')->withPivot('selected');
+    }
+
+    public function productOfGroups()
+    {
+        return $this->belongsToMany('App\Ctic\Product\Models\Product', 'product_groups', 'product_id', 'group_id')->withPivot(['order', 'price', 'group_modifiable']);
     }
 }

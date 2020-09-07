@@ -16,6 +16,7 @@ class UpdateGroup extends FormRequest implements UpdatePropertyContract
             'name'          => 'required|min:2|max:50',
             'observation'   => 'nullable|max:50',
             'order'         => 'nullable|max:50',
+            'product_id'    => 'nullable',
             'mandatory'     => 'nullable',
             'unique_group'  => 'nullable',
             'collapsed'     => 'nullable',

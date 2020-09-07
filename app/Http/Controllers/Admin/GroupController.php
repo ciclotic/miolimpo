@@ -7,6 +7,7 @@ use App\Ctic\Product\Http\Requests\CreateGroup;
 use App\Ctic\Product\Http\Requests\UpdateGroup;
 use App\Ctic\Product\Contracts\Group;
 use App\Ctic\Product\Models\GroupProxy;
+use Vanilo\Product\Models\ProductProxy;
 
 class GroupController extends BaseController
 {
@@ -19,8 +20,11 @@ class GroupController extends BaseController
 
     public function create()
     {
+        $products = ProductProxy::all();
+
         return view('admin.group.create', [
-            'group' => app(Group::class),
+            'products'  => $products,
+            'group'     => app(Group::class),
         ]);
     }
 
@@ -35,18 +39,40 @@ class GroupController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('admin.group.index'));
+        return redirect(route('admin.group.edit', $group));
     }
 
     public function show(Group $group)
     {
-        return view('admin.group.show', ['group' => $group]);
+        return view('admin.group.show', [
+            'group' => $group,
+        ]);
     }
 
     public function edit(Group $group)
     {
+        $products = ProductProxy::all();
+        $productsElegibleAsGroupProduct = [];
+        foreach($products as $optionGroupProductProduct) {
+
+            $isGroupProductYet = false;
+            foreach ($group->groupProducts as $groupProductProduct) {
+                if ($groupProductProduct->id === $optionGroupProductProduct->id) {
+                    $isGroupProductYet = true;
+                }
+            }
+
+            if ($isGroupProductYet) {
+                continue;
+            }
+
+            $productsElegibleAsGroupProduct[] = $optionGroupProductProduct;
+        }
+
         return view('admin.group.edit', [
             'group' => $group,
+            'products'                         => $products,
+            'productsElegibleAsGroupProduct'   => $productsElegibleAsGroupProduct,
         ]);
     }
 

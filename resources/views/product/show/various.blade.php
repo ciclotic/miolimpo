@@ -7,6 +7,7 @@
                 {{ csrf_field() }}
 
                 @include('product.show._buy')
+                @include('product.show._complements_various')
             </form>
 
             @unless(empty($product->propertyValues))

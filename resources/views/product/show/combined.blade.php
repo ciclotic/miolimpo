@@ -6,7 +6,8 @@
             <form action="{{ route('cart.add', $product) }}" method="post" class="mb-4">
                 {{ csrf_field() }}
 
-                @include('product.show._buy')
+                @include('product.show._buy_combined')
+                @include('product.show._groups_combined')
             </form>
 
             @unless(empty($product->propertyValues))

@@ -10,7 +10,13 @@ class Group extends Model implements GroupContract
     protected $table = 'groups';
 
     protected $fillable = [
-        'name'
+        'product_id',
+        'name',
+        'observation',
+        'order',
+        'mandatory',
+        'unique_group',
+        'collapsed',
     ];
 
     public function products()
@@ -26,5 +32,15 @@ class Group extends Model implements GroupContract
     public function title()
     {
         return $this->name;
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Ctic\Product\Models\Product');
+    }
+
+    public function groupProducts()
+    {
+        return $this->belongsToMany('App\Ctic\Product\Models\Product', 'product_groups', 'group_id', 'product_id')->withPivot(['order', 'price', 'group_modifiable']);
     }
 }

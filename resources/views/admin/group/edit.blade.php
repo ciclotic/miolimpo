@@ -18,6 +18,37 @@
 
         <div class="card-block">
             @include('admin.group._form')
+
+            <hr>
+
+            <div class="card">
+                <div class="card-block">
+                    <h6 class="card-title">{{ __('ctic_admin.group_products') }}</h6>
+
+                    <table class="table">
+                        <tr>
+                            <td>
+                                @foreach($group->groupProducts as $groupProduct)
+                                    <span class="badge badge-pill badge-dark">
+                            {{ $groupProduct->name }}:
+                            {{ __('ctic_admin.is_modifiable') }}: {{ ($groupProduct->pivot->group_modifiable) ? __('ctic_admin.yes') : __('ctic_admin.no') }}
+                        </span>
+                                @endforeach
+                            </td>
+                            <td class="text-right">
+                                <button type="button" data-toggle="modal"
+                                        data-target="#group_products-modal"
+                                        class="btn btn-outline-success btn-sm">{{ __('ctic_admin.edit') }}</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            @include('admin.group_product._form', [
+                'group' => $group,
+                'productsElegibleAsGroupProduct' => $productsElegibleAsGroupProduct
+            ])
         </div>
 
         <div class="card-footer">

@@ -37,16 +37,22 @@ Route::group(['prefix' => 'caja', 'as' => 'checkout.'], function() {
     Route::post('submit', 'CheckoutController@submit')->name('submit');
 });
 
+// ADMIN ROUTES
+
 Route::group(['prefix' => 'admin/complement', 'as' => 'admin.'], function() {
     Route::post('/{main_product}/{complement_product}/{selected}', 'Admin\\ComplementController@store')->name('complement.store');
     Route::put('/{main_product}/{complement_product}/{selected}', 'Admin\\ComplementController@update')->name('complement.update');
     Route::delete('/{main_product}/{complement_product}', 'Admin\\ComplementController@remove')->name('complement.remove');
 });
 
-// ADMIN ROUTES
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('group', 'Admin\\GroupController');
+});
+
+Route::group(['prefix' => 'admin/group_product', 'as' => 'admin.'], function() {
+    Route::post('/{group}/{group_product}/{order_field}/{price}/{group_modifiable}', 'Admin\\GroupProductController@store')->name('group_product.store');
+    Route::put('/{group}/{group_product}/{order_field}/{price}/{group_modifiable}', 'Admin\\GroupProductController@update')->name('group_product.update');
+    Route::delete('/{group}/{group_product}', 'Admin\\GroupProductController@remove')->name('group_product.remove');
 });
 
 // END ADMIN ROUTES

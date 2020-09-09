@@ -29,8 +29,7 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/",
-            "App\\Product\\Seeds\\": "app/Ctic/Product/resources/database/seeds"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

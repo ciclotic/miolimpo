@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Product\Seeds;
-
 use Illuminate\Database\Seeder;
-use Konekt\Acl\Models\Role;
 use Konekt\Acl\Models\Permission;
+use Konekt\Acl\Models\Role;
 
-class PermissionsSeeder extends Seeder
+class ProductGroupPermissionsSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         // Reset cached roles and permissions

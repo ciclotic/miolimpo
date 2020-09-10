@@ -13,6 +13,9 @@
     .group-product-remove {
         cursor: pointer;
     }
+    .hide-price {
+        display: none;
+    }
 </style>
 <form action="{{ route('cart.add', $product) }}" id="product-combined-form" method="post" class="mb-4">
     {{ csrf_field() }}
@@ -21,7 +24,7 @@
             <div class="col-md-12 mt-2">
                 <span class="btn btn-block btn-light btn-group-products-elected">{{ $group->name }} {{ __('ctic_shop.elected') }}</span>
             </div>
-            <div class="col-md-12" id="elected-group-products-{{ $key }}">
+            <div class="col-md-12 group-products" id="elected-group-products-{{ $key }}">
                 &nbsp;
             </div>
         </div>
@@ -53,9 +56,9 @@
                             </div>
                             <div class="col-md-4 col-3 mt-2 product-group-price text-primary">
                                 @if ($groupProduct->pivot->price > 0)
-                                    <span id="product-price-{{ $groupProduct->id }}">{{ number_format($groupProduct->pivot->price, 2, ',', '.') }}</span> {{ config('vanilo.framework.currency.sign') }}
+                                    <span class="hide-price" id="unit-product-price-{{ $groupProduct->id }}">{{ number_format($groupProduct->pivot->price, 2, ',', '.') }}</span><span id="product-price-{{ $groupProduct->id }}">{{ number_format($groupProduct->pivot->price, 2, ',', '.') }}</span> {{ config('vanilo.framework.currency.sign') }}
                                 @else
-                                    <span id="product-price-{{ $groupProduct->id }}">&nbsp;</span>
+                                    <span class="hide-price" id="unit-product-price-{{ $groupProduct->id }}">&nbsp;</span><span id="product-price-{{ $groupProduct->id }}">&nbsp;</span>
                                 @endif
                             </div>
                         </div>
@@ -83,13 +86,14 @@
 
             let newHTML = groupLayer.html()
 
-            newHTML = newHTML + '<div class="row"><input type="hidden" name="products-to-complements-selected[' + groupProductId + ']" value="1"><div class="col-md-10 col-9">' + groupProductName + '</div><div class="col-md-2 col-2 group-product-remove" onclick="$(this).parent().remove()">X</div>'
+            newHTML = newHTML + '<div class="row group-element"><input type="hidden" class="products-to-complements-selected" name="products-to-complements-selected[' + groupProductId + ']" data-group-product-id="' + groupProductId + '" value="1"><div class="col-md-10 col-9">' + groupProductName + '</div><div class="col-md-2 col-2 group-product-remove" onclick="$(this).parent().remove(); changeCombined()">X</div>'
 
             let groupProductComplementsLayer = $('.group-product-complement-' + groupProductId + ' .form-check-input:checked')
 
             for (let i = 0; i < groupProductComplementsLayer.length; i++) {
                 let newInputTypeHidden = groupProductComplementsLayer.eq(i)
-                let newNameLayer = groupProductComplementsLayer.eq(i).closest('.group-product-complement-' + groupProductId).find('.complement-name').eq(0).html()
+                let newNameLayer = groupProductComplementsLayer.eq(i).closest('.group-product-complement-' + groupProductId).find('.complement-name').eq(0)
+                let newName = newNameLayer.html()
 
                 if (newInputTypeHidden.attr('name')[newInputTypeHidden.attr('name').length - 1] === ']')
                 {
@@ -98,12 +102,14 @@
                     newHTML = newHTML + '<input type="hidden" name="' + newInputTypeHidden.attr('name') + '[' + newInputTypeHidden.attr('value') + ']" value="1">'
                 }
 
-                newHTML = newHTML + '<div class="col-md-1 col-1">&nbsp;</div><div class="col-md-11 col-10">' + newNameLayer + '</div>'
+                newHTML = newHTML + '<div class="col-md-1 col-1">&nbsp;</div><div class="col-md-11 col-10 complement-product" data-complement-id="' + newNameLayer.data('complement-id') + '">' + newName + '</div>'
             }
 
             newHTML = newHTML + '</div>'
 
             groupLayer.html(newHTML)
+
+            changeCombined()
         }
         function changeComplementFromGroupProduct(groupProductId, productComplementId, price) {
             let productPrice = $('#product-price-' + groupProductId)

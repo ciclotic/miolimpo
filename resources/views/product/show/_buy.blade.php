@@ -35,6 +35,6 @@
         </select>
     </div>
     <div class="col-md-8">
-        <button type="submit" class="btn btn-primary btn-lg w-100" @if(!$product->price) disabled @endif>{{ __('ctic_shop.add_cart') }}</button>
+        <button type="submit" class="btn btn-primary btn-lg w-100">{{ __('ctic_shop.add_cart') }}</button>
     </div>
 </div>

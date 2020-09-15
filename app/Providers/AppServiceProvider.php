@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 use Schema;
 use Vanilo\Category\Contracts\Taxon as TaxonContract;
 use Vanilo\Product\Contracts\Product as ProductContract;
+use Vanilo\Cart\Contracts\CartItem as CartItemContract;
+use Vanilo\Cart\Contracts\Cart as CartContract;
 use Illuminate\Foundation\AliasLoader;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +35,12 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->concord->registerModel(
             ProductContract::class, \App\Ctic\Product\Models\Product::class
+        );
+        $this->app->concord->registerModel(
+            CartItemContract::class, \App\Ctic\Cart\Models\CartItem::class
+        );
+        $this->app->concord->registerModel(
+            CartContract::class, \App\Ctic\Cart\Models\Cart::class
         );
         $this->app->concord->registerModel(\App\Ctic\Product\Contracts\Group::class, Group::class);
     }

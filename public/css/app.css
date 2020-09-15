@@ -12232,3 +12232,8 @@ a:hover {
   width: 80px;
 }
 
+.table th,
+.table td {
+  padding: 0 5px;
+}
+

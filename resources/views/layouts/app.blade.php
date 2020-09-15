@@ -18,6 +18,43 @@
     @include('layouts._favicons')
 </head>
 <body>
+    <style>
+        .cart-widget {
+            position: relative;
+            float: left;
+            background: white;
+            padding: 5px;
+            top: 0px;
+            left: 0px;
+            width: 35%;
+            height: 100%;
+            display: none;
+            border-right: #ff9320 solid 2px;
+            border-bottom: #ff9320 solid 2px;
+            border-left: #ff9320 solid 2px;
+        }
+        .link-close {
+            font-size: 24px;
+            text-align: right;
+        }
+        @media only screen and (max-width: 600px) {
+            .cart-widget {
+                position: fixed;
+                z-index: 100;
+                width: 100%;
+                border-right: none;
+                border-bottom: none;
+                border-left: none;
+            }
+        }
+
+        main {
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+    </style>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel navbar-main">
             <div class="container">
@@ -48,7 +85,7 @@
                                 </svg>
                             </a>
                             @if(Cart::itemCount() > 0)
-                                <a class="nav-link" href="{{ route('cart.show') }}">
+                                <a class="nav-link" href="#" onclick="showCart()">
                                     <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                     </svg>
@@ -148,7 +185,7 @@
                                 </div>
                                 @if(Cart::itemCount() > 0)
                                     <div class="col-md-3 col-2 main-menu nav-item header-icon">
-                                        <a class="nav-link" href="{{ route('cart.show') }}">
+                                        <a class="nav-link" href="#" onclick="showCart()">
                                             <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                                             </svg>
@@ -165,6 +202,18 @@
                 @endif
             </div>
         </nav>
+
+        <div class="cart-widget">
+            <div class="row">
+                <div class="col-md-10 col-6">
+                    &nbsp;
+                </div>
+                <div class="col-md-2 col-6 link-close">
+                    <a href="#" onclick="hideCart()">X</a>
+                </div>
+            </div>
+            @include('cart.cart')
+        </div>
 
         <main>
 
@@ -198,6 +247,20 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="application/javascript">
+        function showCart() {
+            $('.cart-widget').css('display', 'block')
+            $('main').css('width', '65%')
+        }
+        function hideCart() {
+            $('.cart-widget').css('display', 'none')
+            $('main').css('width', '100%')
+        }
+
+        @if($showCart)
+            showCart();
+        @endif
+    </script>
     @yield('scripts')
 </body>
 </html>

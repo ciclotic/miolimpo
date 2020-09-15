@@ -37,6 +37,6 @@
         {{ __('ctic_shop.qty') }}: <span id="quantity-field">1</span>
     </div>
     <div class="col-md-8">
-        <button type="submit" class="btn btn-primary btn-lg w-100" @if(!$product->price) disabled @endif onclick="$('#product-combined-form').submit()">{{ __('ctic_shop.add_cart') }}</button>
+        <button type="submit" class="btn btn-primary btn-lg w-100" @if($product->price == 0) disabled @endif onclick="$('#product-combined-form').submit()">{{ __('ctic_shop.add_cart') }}</button>
     </div>
 </div>

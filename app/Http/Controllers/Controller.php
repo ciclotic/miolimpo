@@ -16,6 +16,8 @@ class Controller extends BaseController
 
     protected function getCommonParameters(Taxon $taxon = null)
     {
+        $showCart = request()->get('show-cart', false);
+
         $agent = new Agent();
 
         $taxonomies = TaxonomyProxy::first();
@@ -25,6 +27,7 @@ class Controller extends BaseController
             'agent'      => $agent,
             'taxons'     => $taxons,
             'taxon'      => $taxon,
+            'showCart'   => $showCart,
         ];
     }
 }

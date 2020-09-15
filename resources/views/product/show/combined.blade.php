@@ -95,6 +95,7 @@
                 })
             })
 
+            $('input[name="quantity"]').val(maxProductQuantity)
             // Print price
             productQuantity.html(maxProductQuantity)
         }

@@ -38,4 +38,23 @@ class Product extends BaseProduct
     {
         return $this->belongsToMany('App\Ctic\Product\Models\Product', 'product_groups', 'product_id', 'group_id')->withPivot(['order', 'price', 'group_modifiable']);
     }
+
+    public function priceApplicableFromCombinedProduct(\Vanilo\Product\Contracts\Product $combinedProduct, \Vanilo\Product\Contracts\Product $parentProduct, $complementGroupId)
+    {
+        foreach ($combinedProduct->groups as $group) {
+            if ($group->id === (int) $complementGroupId) {
+                foreach ($group->groupProducts as $productGroup) {
+                    if ($productGroup->id === $parentProduct->id && $productGroup->pivot->price !== '0.0000') {
+                        if ($parentProduct->id === $this->id) {
+                            return $productGroup->pivot->price;
+                        } else {
+                            return $this->price;
+                        }
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
 }

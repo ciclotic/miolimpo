@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Ctic\AddressBook\Models\AddressBook;
 use App\Ctic\Product\Http\Requests\CreateGroup;
 use App\Ctic\Product\Http\Requests\UpdateGroup;
 use App\Ctic\Product\Models\Group;
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
             CartContract::class, \App\Ctic\Cart\Models\Cart::class
         );
         $this->app->concord->registerModel(\App\Ctic\Product\Contracts\Group::class, Group::class);
+        $this->app->concord->registerModel(\App\Ctic\AddressBook\Contracts\AddressBook::class, AddressBook::class);
     }
 
     /**

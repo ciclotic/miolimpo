@@ -29,4 +29,14 @@ return [
     'has_been_removed'          => ':name ha sido eliminado del carrito',
     'has_been_updated'          => ':name ha sido modificado en el carrito',
 
+    'my_orders'     => 'Mis pedidos',
+    'my_data'       => 'Mis datos',
+    'email'         => 'Email',
+    'surname'       => 'Apellidos',
+    'newsletter'    => 'Newsletter',
+    'password'      => 'Password',
+    'phone'         => 'Teléfono',
+    'repeat_password'   => 'Repetir password',
+    'current_password'  => 'Password actual',
+    'save_data'     => 'Guardar datos',
 ];

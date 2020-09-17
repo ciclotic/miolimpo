@@ -9,7 +9,7 @@
                     <a href="{{ route('register') }}">{{ __('ctic_shop.register') }}</a>
                 @endif
             @else
-                <a href="#" class="col-md-2 col-6">
+                <a href="{{ route('account.home') }}" class="col-md-2 col-6">
                     {{ Auth::user()->name }}
                 </a>
 

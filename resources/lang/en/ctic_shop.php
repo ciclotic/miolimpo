@@ -29,4 +29,14 @@ return [
     'has_been_removed'          => ':name has been removed from cart',
     'has_been_updated'          => ':name has been updated from cart',
 
+    'my_orders'     => 'My orders',
+    'my_data'       => 'My data',
+    'email'         => 'Email',
+    'surname'       => 'Surname',
+    'newsletter'    => 'Newsletter',
+    'password'      => 'Password',
+    'phone'         => 'Phone',
+    'repeat_password'   => 'Repeat password',
+    'current_password'  => 'Current password',
+    'save_data'     => 'Save data',
 ];

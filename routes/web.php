@@ -17,7 +17,16 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
+    Route::get('/home', 'Account\\HomeController@index')->name('home');
+    Route::get('/data', 'Account\\HomeController@data')->name('data');
+    Route::get('/edit-data', 'Account\\HomeController@editData')->name('edit-data');
+    Route::post('/save-data', 'Account\\HomeController@saveData')->name('save-data');
+    Route::get('/add-address-book', 'Account\\HomeController@addAddressBook')->name('add-address-book');
+    Route::get('/edit-address-book', 'Account\\HomeController@editAddressBook')->name('edit-address-book');
+    Route::post('/save-address-book', 'Account\\HomeController@saveAddressBook')->name('save-address-book');
+    Route::delete('/trash-address-book', 'Account\\HomeController@trashAddressBook')->name('trash-address-book');
+});
 
 Route::group(['as' => 'product.'], function() {
     Route::get('/', 'ProductController@index')->name('index');

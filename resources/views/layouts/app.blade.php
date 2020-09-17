@@ -130,7 +130,7 @@
                                             <a href="#" class="col-3">
                                                 Ahorra 100€
                                             </a>
-                                            <a href="#" class="col-3">
+                                            <a href="{{ route('account.home') }}" class="col-3">
                                                 {{ Auth::user()->name }}
                                             </a>
 

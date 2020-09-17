@@ -1,4 +1,5 @@
 @foreach($product->complementProducts as $complementProduct)
+    <input type="hidden" name="products-to-complements-selected[{{ $complementProduct->id }}]" >
     @if($agent->isMobile())
         <div class="complement-product">
             <div class="row mt-2">

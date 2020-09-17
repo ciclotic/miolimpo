@@ -10,6 +10,18 @@ use Vanilo\Product\Models\ProductProxy;
 
 class CartController extends Controller
 {
+    protected function addVariousProduct(Product $product, $complementProducts, $quantity)
+    {
+        if (is_array($complementProducts)) {
+            foreach ($complementProducts as $complementProductId => $complementProductValue) {
+                $quantityComplement = (empty($quantity[$complementProductId])) ? 0 : $quantity[$complementProductId];
+                if ($quantityComplement) {
+                    Cart::addItem(ProductProxy::find($complementProductId), $quantityComplement, ['withoutOverride' => true]);
+                }
+            }
+        }
+    }
+
     protected function addCombinedProduct(Product $product, $complementProducts, $quantity)
     {
         $cartItem = Cart::addItem($product, $quantity, ['withoutOverride' => true]);
@@ -82,6 +94,9 @@ class CartController extends Controller
 
         if ($product->archetype && \App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'combined') { // Combined
             $this->addCombinedProduct($product, $complementProducts, $quantity);
+        } elseif ($product->archetype && \App\Ctic\Product\Models\Product::ARCHETYPES[$product->archetype] === 'various') { // Various
+            $quantity = $request->get('quantity-complement', 1);
+            $this->addVariousProduct($product, $complementProducts, $quantity);
         } else {
             if (!is_array($complementProducts) && $complementProducts) { // Unique
                 Cart::addItem(ProductProxy::find($complementProducts), $quantity, ['withoutOverride' => true]);
@@ -103,6 +118,13 @@ class CartController extends Controller
 
     public function remove(CartItem $cart_item)
     {
+        foreach ($cart_item->children as $cartItemProduct) {
+            foreach ($cartItemProduct->children as $cartItemComplement) {
+                Cart::removeItem($cartItemComplement);
+            }
+
+            Cart::removeItem($cartItemProduct);
+        }
         Cart::removeItem($cart_item);
         flash()->info(__('ctic_shop.has_been_removed', ['name' => $cart_item->getBuyable()->getName()]));
 

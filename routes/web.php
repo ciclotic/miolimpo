@@ -24,7 +24,7 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
     Route::post('/save-data', 'Account\\HomeController@saveData')->name('save-data');
     Route::get('/add-address-book', 'Account\\HomeController@addAddressBook')->name('add-address-book');
     Route::get('/edit-address-book', 'Account\\HomeController@editAddressBook')->name('edit-address-book');
-    Route::post('/save-address-book', 'Account\\HomeController@saveAddressBook')->name('save-address-book');
+    Route::post('/save-address-book/{address_book}', 'Account\\HomeController@saveAddressBook')->name('save-address-book');
     Route::delete('/trash-address-book', 'Account\\HomeController@trashAddressBook')->name('trash-address-book');
 });
 

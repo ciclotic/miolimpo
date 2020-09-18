@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
+use App\Ctic\AddressBook\Contracts\AddressBook;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -113,7 +114,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveAddressBook()
+    public function saveAddressBook(AddressBook $addressBook)
     {
         return view('account.data', $this->getCommonParameters());
     }

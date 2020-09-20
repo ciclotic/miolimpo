@@ -17,6 +17,7 @@
 
 Auth::routes();
 
+Route::get('/home', 'Account\\HomeController@index')->name('home');
 Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
     Route::get('/home', 'Account\\HomeController@index')->name('home');
     Route::get('/data', 'Account\\HomeController@data')->name('data');

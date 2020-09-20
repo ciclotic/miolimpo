@@ -52,7 +52,7 @@ class ProductController extends BaseController
             try {
                 if (!empty($request->files->filter('images'))) {
                     $product->addMultipleMediaFromRequest(['images'])->each(function ($fileAdder) {
-                        $fileAdder->toMediaCollection();
+                        $fileAdder->toMediaCollection('default', env("FILESYSTEM_DRIVER", "local"));
                     });
                 }
             } catch (\Exception $e) { // Here we already have the product created

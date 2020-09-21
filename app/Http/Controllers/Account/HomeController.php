@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Account;
 
 use App\Ctic\AddressBook\Contracts\AddressBook;
+use App\Ctic\AddressBook\Models\AddressBookProxy;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Konekt\User\Models\UserProxy;
+use Vanilo\Order\Contracts\Order;
+use Vanilo\Order\Models\OrderProxy;
 
 class HomeController extends Controller
 {
@@ -27,7 +30,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('account.home', $this->getCommonParameters());
+        return view('account.home', array_merge(
+            $this->getCommonParameters(),
+            [
+                'orders' => OrderProxy::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(100)
+            ]
+        ));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showOrder(Order $order)
+    {
+        return view('account.show_order', array_merge(
+            $this->getCommonParameters(),
+            [
+                'order' => $order
+            ]
+        ));
     }
 
     /**
@@ -96,7 +119,7 @@ class HomeController extends Controller
      */
     public function addAddressBook()
     {
-        return view('account.data', $this->getCommonParameters());
+        return view('account.address_book.create', $this->getCommonParameters());
     }
 
     /**
@@ -104,9 +127,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editAddressBook()
+    public function editAddressBook(AddressBook $addressBook)
     {
-        return view('account.data', $this->getCommonParameters());
+        return view('account.address_book.edit', array_merge(
+            $this->getCommonParameters(),
+            [
+                'addressBook' => $addressBook
+            ]
+        ));
     }
 
     /**
@@ -114,9 +142,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function saveAddressBook(AddressBook $addressBook)
+    public function storeAddressBook(Request $request)
     {
-        return view('account.data', $this->getCommonParameters());
+        try {
+            $addressBook = AddressBookProxy::create(array_merge(['user_id' => auth()->user()->id], $request->all()));
+            flash()->success(__(':name has been created', ['name' => $addressBook->name]));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back()->withInput();
+        }
+
+        return redirect(route('account.edit-address-book', $addressBook));
     }
 
     /**
@@ -124,8 +161,39 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function trashAddressBook()
+    public function updateAddressBook(AddressBook $addressBook, Request $request)
     {
-        return view('account.data', $this->getCommonParameters());
+        try {
+            $addressBook->update($request->all());
+
+            flash()->success(__(':name has been updated', ['name' => $addressBook->name]));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back()->withInput();
+        }
+
+        return redirect(route('account.data'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trashAddressBook(AddressBook $addressBook)
+    {
+        try {
+            $name = $addressBook->name;
+            $addressBook->delete();
+
+            flash()->warning(__(':name has been deleted', ['name' => $name]));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back();
+        }
+
+        return redirect(route('account.data'));
     }
 }

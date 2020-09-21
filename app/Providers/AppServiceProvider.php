@@ -45,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->concord->registerModel(\App\Ctic\Product\Contracts\Group::class, Group::class);
         $this->app->concord->registerModel(\App\Ctic\AddressBook\Contracts\AddressBook::class, AddressBook::class);
+
+        $this->app->bind(\Vanilo\Order\Contracts\OrderFactory::class, \App\Ctic\Order\Factories\OrderFactory::class);
     }
 
     /**

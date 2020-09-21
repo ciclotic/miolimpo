@@ -20,13 +20,15 @@ Auth::routes();
 Route::get('/home', 'Account\\HomeController@index')->name('home');
 Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
     Route::get('/home', 'Account\\HomeController@index')->name('home');
+    Route::get('/show-order/{order}', 'Account\\HomeController@showOrder')->name('show-order');
     Route::get('/data', 'Account\\HomeController@data')->name('data');
     Route::get('/edit-data', 'Account\\HomeController@editData')->name('edit-data');
     Route::post('/save-data', 'Account\\HomeController@saveData')->name('save-data');
     Route::get('/add-address-book', 'Account\\HomeController@addAddressBook')->name('add-address-book');
-    Route::get('/edit-address-book', 'Account\\HomeController@editAddressBook')->name('edit-address-book');
-    Route::post('/save-address-book/{address_book}', 'Account\\HomeController@saveAddressBook')->name('save-address-book');
-    Route::delete('/trash-address-book', 'Account\\HomeController@trashAddressBook')->name('trash-address-book');
+    Route::get('/edit-address-book/{address_book}', 'Account\\HomeController@editAddressBook')->name('edit-address-book');
+    Route::post('/save-address-book', 'Account\\HomeController@storeAddressBook')->name('store-address-book');
+    Route::put('/update-address-book/{address_book}', 'Account\\HomeController@updateAddressBook')->name('update-address-book');
+    Route::get('/trash-address-book/{address_book}', 'Account\\HomeController@trashAddressBook')->name('trash-address-book');
 });
 
 Route::group(['as' => 'product.'], function() {

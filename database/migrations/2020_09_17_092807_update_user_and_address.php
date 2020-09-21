@@ -23,7 +23,7 @@ class UpdateUserAndAddress extends Migration
             $table->string('address2')->nullable();
             $table->string('postal_code');
             $table->string('town');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

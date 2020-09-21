@@ -1,27 +1,25 @@
-@extends('appshell::layouts.default')
-
-@section('title')
-    {{ __('ctic_admin.create_group') }}
-@stop
+@extends('layouts.app')
 
 @section('content')
-{!! Form::open(['route' => 'admin.group.store', 'autocomplete' => 'off']) !!}
 
-    <div class="card card-accent-success">
+<div class="row">
+    @include('account/account-menu')
+    <div class="col-md-9">
+        {!! Form::open(['route' => 'account.store-address-book', 'autocomplete' => 'off']) !!}
+        <h1>
+            {{ __('ctic_shop.details_address_book') }}
+        </h1>
 
-        <div class="card-header">
-            {{ __('ctic_admin.details_group') }}
+        @include('account.address_book._form')
+        <div class="row">
+            <div class="col-md-6 col-6">
+                <button class="btn btn-success btn-block">{{ __('ctic_shop.create_address_book') }}</button>
+            </div>
+            <div class="col-md-6 col-6">
+                <a href="#" onclick="history.back();" class="btn btn-link btn-block text-muted">{{ __('ctic_shop.cancel') }}</a>
+            </div>
         </div>
-
-        <div class="card-block">
-            @include('admin.group._form')
-        </div>
-
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('ctic_admin.create_group') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('ctic_admin.cancel') }}</a>
-        </div>
+        {!! Form::close() !!}
     </div>
-
-{!! Form::close() !!}
+</div>
 @stop

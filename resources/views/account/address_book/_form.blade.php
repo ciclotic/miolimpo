@@ -1,95 +1,93 @@
-<div class="form-group">
-    {{ Form::select('product_id', $products->pluck('name', 'id'), ($group->product)? $group->product->id : null, [
-            'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
-            'placeholder' => __('ctic_admin.product')
-        ])
-    }}
-    @if ($errors->has('product_id'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('product_id') }}</div>
-    @endif
-</div>
+<div id="shipping-address">
 
-<div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-folder"></i>
-        </span>
-        {{ Form::text('name', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('ctic_admin.name_of_group')
-            ])
-        }}
+    <div class="form-group row">
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.name') }}</label>
+        <div class="col-md-10">
+            {{ Form::text('name', null, [
+                    'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('name'))
+                <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+            @endif
+        </div>
     </div>
-    @if ($errors->has('name'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-    @endif
-</div>
 
-<div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-folder"></i>
-        </span>
-        {{ Form::text('observation', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('observation') ? ' is-invalid' : ''),
-                'placeholder' => __('ctic_admin.observation')
-            ])
-        }}
+    <div class="form-group row">
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.addressee_name') }}</label>
+        <div class="col-md-4">
+            {{ Form::text('addressee_name', null, [
+                    'class' => 'form-control' . ($errors->has('addressee_name') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('addressee_name'))
+                <div class="invalid-feedback">{{ $errors->first('addressee_name') }}</div>
+            @endif
+        </div>
+
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.addressee_surname') }}</label>
+        <div class="col-md-4">
+            {{ Form::text('addressee_surname', null, [
+                    'class' => 'form-control' . ($errors->has('addressee_surname') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('addressee_surname'))
+                <div class="invalid-feedback">{{ $errors->first('addressee_surname') }}</div>
+            @endif
+        </div>
     </div>
-    @if ($errors->has('observation'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('observation') }}</div>
-    @endif
-</div>
 
-<div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-folder"></i>
-        </span>
-        {{ Form::text('order', null, [
-                'class' => 'form-control form-control-lg' . ($errors->has('order') ? ' is-invalid' : ''),
-                'placeholder' => __('ctic_admin.order')
-            ])
-        }}
+    <div class="form-group row">
+
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.address') }}</label>
+        <div class="col-md-10">
+            {{ Form::text('address', null, [
+                    'class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('address'))
+                <div class="invalid-feedback">{{ $errors->first('address') }}</div>
+            @endif
+        </div>
     </div>
-    @if ($errors->has('order'))
-        <input hidden class="form-control is-invalid" />
-        <div class="invalid-feedback">{{ $errors->first('order') }}</div>
-    @endif
-</div>
 
-<div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
-        <label class="switch switch-icon switch-pill switch-primary">
-            {{ Form::checkbox("mandatory", 1, $group->manage_stock, ['class' => 'switch-input']) }}
-            <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-            <span class="switch-handle"></span>
-        </label>
-        {{ __('ctic_admin.mandatory') }}
+    <div class="form-group row">
+
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.address') }} 2</label>
+        <div class="col-md-10">
+            {{ Form::text('address2', null, [
+                    'class' => 'form-control' . ($errors->has('address2') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('address2'))
+                <div class="invalid-feedback">{{ $errors->first('address2') }}</div>
+            @endif
+        </div>
     </div>
-</div>
 
-<div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
-        <label class="switch switch-icon switch-pill switch-primary">
-            {{ Form::checkbox("unique_group", 1, $group->manage_stock, ['class' => 'switch-input']) }}
-            <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-            <span class="switch-handle"></span>
-        </label>
-        {{ __('ctic_admin.unique_group') }}
-    </div>
-</div>
+    <div class="form-group row">
 
-<div class="form-row">
-    <div class="form-group col-12 col-md-6 col-xl-4">
-        <label class="switch switch-icon switch-pill switch-primary">
-            {{ Form::checkbox("collapsed", 1, $group->manage_stock, ['class' => 'switch-input']) }}
-            <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-            <span class="switch-handle"></span>
-        </label>
-        {{ __('ctic_admin.collapsed') }}
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.postal_code') }}</label>
+        <div class="col-md-4">
+            {{ Form::text('postal_code', null, [
+                    'class' => 'form-control' . ($errors->has('postal_code') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('postal_code'))
+                <div class="invalid-feedback">{{ $errors->first('postal_code') }}</div>
+            @endif
+        </div>
+
+        <label class="col-form-label col-md-2">{{ __('ctic_shop.city') }}</label>
+        <div class="col-md-4">
+            {{ Form::text('town', null, [
+                    'class' => 'form-control' . ($errors->has('town') ? ' is-invalid' : '')
+                ])
+            }}
+            @if ($errors->has('town'))
+                <div class="invalid-feedback">{{ $errors->first('town') }}</div>
+            @endif
+        </div>
+
     </div>
 </div>

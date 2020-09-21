@@ -27,7 +27,7 @@
                             @if(! $agent->isMobile())
                                 <thead>
                                     <tr>
-                                        <th colspan="2">{{ __('ctic_shop.name') }}</th>
+                                        <th>{{ __('ctic_shop.name') }}</th>
                                         <th>{{ __('ctic_shop.qty') }}</th>
                                         <th>{{ __('ctic_shop.total') }}</th>
                                         <th></th>
@@ -48,8 +48,7 @@
                                         </div>
                                     @endif
                                     <div class="row">
-                                        <div class="col-3"><img src="{{ $item->product->getThumbnailUrl() ?: '/images/product.jpg' }}" class="product-image"/></div>
-                                        <div class="col-9">
+                                        <div class="col-12">
                                             <a href="{{ route('product.show', [($item->product->taxons->first()) ? $item->product->taxons->first()->slug : $taxons->first()->slug, $item->product]) }}">
                                                 @if ($item->parent && \App\Ctic\Product\Models\Product::ARCHETYPES[$item->parent->product->archetype] === 'combined')
                                                     -
@@ -98,8 +97,7 @@
                                         </tr>
                                     @endif
                                     <tr>
-                                        <td width="5%"><img src="{{ $item->product->getThumbnailUrl() ?: '/images/product.jpg' }}" class="product-image"/></td>
-                                        <td width="55%">
+                                        <td width="60%">
                                             <a href="{{ route('product.show', [($item->product->taxons->first()) ? $item->product->taxons->first()->slug : $taxons->first()->slug, $item->product]) }}">
                                                 @if ($item->parent && \App\Ctic\Product\Models\Product::ARCHETYPES[$item->parent->product->archetype] === 'combined')
                                                     -
@@ -130,7 +128,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="3"></th>
+                                        <th colspan="2"></th>
                                         <th>
                                             {{ format_price(number_format(Cart::total(), 2, ',', '.')) }}
                                         </th>

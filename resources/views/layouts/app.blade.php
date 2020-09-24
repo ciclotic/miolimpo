@@ -29,9 +29,9 @@
             width: 35%;
             height: 100%;
             display: none;
-            border-right: #ff9320 solid 2px;
-            border-bottom: #ff9320 solid 2px;
-            border-left: #ff9320 solid 2px;
+            border-right: {{ setting('ctic.styles.colors.main') }} solid 2px;
+            border-bottom: {{ setting('ctic.styles.colors.main') }} solid 2px;
+            border-left: {{ setting('ctic.styles.colors.main') }} solid 2px;
         }
         .link-close {
             font-size: 24px;
@@ -53,6 +53,50 @@
             float: left;
             width: 100%;
         }
+
+        a {
+            color: {{ setting('ctic.styles.colors.main') }};
+        }
+
+        a:hover {
+            color: {{ setting('ctic.styles.colors.main') }};
+        }
+
+        .navbar-main  a:hover {
+            color: #ffffff;
+        }
+
+        .text-primary {
+            color: {{ setting('ctic.styles.colors.main') }} !important;
+        }
+
+        .btn-primary {
+            background-color: {{ setting('ctic.styles.colors.main') }} !important;
+            border-color: {{ setting('ctic.styles.colors.main') }} !important;
+        }
+
+        .navbar-main {
+            background-color: {{ setting('ctic.styles.colors.main') }};
+        }
+
+        .background-grey-scale a:hover {
+            color: {{ setting('ctic.styles.colors.main') }};
+            border-bottom: 2px solid {{ setting('ctic.styles.colors.main') }};
+        }
+
+        .navbar-main .background-grey-scale  a:hover {
+            color: #ffffff;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .auth-style a {
+                color: {{ setting('ctic.styles.colors.main') }} !important;
+            }
+
+            .auth-style a:hover {
+                color: {{ setting('ctic.styles.colors.main') }} !important;
+            }
+        }
     </style>
 
     <div id="app">
@@ -71,7 +115,7 @@
                         <div class="col-md-2 col-5 background-grey-scale background-grey-scale-0 store-title mt-1">
                             <a href="{{ url('/') }}">
                                 <img src="/images/logo.png" title="{{ config('app.name', 'Laravel') }}" />
-                                {{ config('app.name', 'Laravel') }}
+                                {{ setting('appshell.ui.name') }}
                             </a>
                             <div class="input-group header-search" id="header-search-mobile">
                                 <input type="text" class="form-control" aria-label="{{ __('ctic_shop.search') }}" id="header-search-mobile-input">
@@ -105,7 +149,7 @@
                             <a href="{{ url('/') }}">
                                 <img src="/images/logo.png" title="{{ config('app.name', 'Laravel') }}" />
                                 <br>
-                                {{ config('app.name', 'Laravel') }}
+                                {{ setting('appshell.ui.name') }}
                             </a>
                         </div>
                         <div class="col-md-10">
@@ -114,7 +158,7 @@
                                 <!-- Authentication Links -->
                                 <!-- Authentication duplicated in _categories.blade.php category -->
                                 <div class="col-md-5 header-phrase">
-                                    Mi Olimpo, pide tu comida online.
+                                    {{ setting('appshell.ui.name') }}, pide tu comida online.
                                 </div>
                                 <div class="col-md-7 background-grey-scale background-grey-scale-0 auth-style">
                                     <div class="row">

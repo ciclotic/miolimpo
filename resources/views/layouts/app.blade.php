@@ -114,7 +114,7 @@
                         </div>
                         <div class="col-md-2 col-5 background-grey-scale background-grey-scale-0 store-title mt-1">
                             <a href="{{ url('/') }}">
-                                <img src="/images/logo.png" title="{{ config('app.name', 'Laravel') }}" />
+                                <img src="{{ setting('ctic.general.defaults.logo_url') }}" title="{{ config('app.name', 'Laravel') }}" />
                                 {{ setting('appshell.ui.name') }}
                             </a>
                             <div class="input-group header-search" id="header-search-mobile">
@@ -147,7 +147,7 @@
                     <div class="row w-100">
                         <div class="col-md-2 col-6 background-grey-scale background-grey-scale-0 store-title">
                             <a href="{{ url('/') }}">
-                                <img src="/images/logo.png" title="{{ config('app.name', 'Laravel') }}" />
+                                <img src="{{ setting('ctic.general.defaults.logo_url') }}" title="{{ config('app.name', 'Laravel') }}" />
                                 <br>
                                 {{ setting('appshell.ui.name') }}
                             </a>
@@ -158,22 +158,26 @@
                                 <!-- Authentication Links -->
                                 <!-- Authentication duplicated in _categories.blade.php category -->
                                 <div class="col-md-5 header-phrase">
-                                    {{ setting('appshell.ui.name') }}, pide tu comida online.
+                                    {{ setting('ctic.general.defaults.main_phrase') }}
                                 </div>
                                 <div class="col-md-7 background-grey-scale background-grey-scale-0 auth-style">
                                     <div class="row">
+                                        @if (setting('ctic.general.defaults.help'))
+                                            <a href="{{ setting('ctic.general.defaults.help_url') }}" class="col-3">
+                                                {{ setting('ctic.general.defaults.help') }}
+                                            </a>
+                                        @endif
+                                        @if (setting('ctic.general.defaults.reference'))
+                                            <a href="{{ setting('ctic.general.defaults.reference_url') }}" class="col-3">
+                                                {{ setting('ctic.general.defaults.reference') }}
+                                            </a>
+                                        @endif
                                         @guest
                                             <a href="{{ route('login') }}" class="col-6">{{ __('ctic_shop.login') }}</a>
                                             @if (Route::has('register'))
                                                 <a href="{{ route('register') }}" class="col-6">{{ __('ctic_shop.register') }}</a>
                                             @endif
                                         @else
-                                            <a href="#" class="col-3">
-                                                Ayuda
-                                            </a>
-                                            <a href="#" class="col-3">
-                                                Ahorra 100€
-                                            </a>
                                             <a href="{{ route('account.home') }}" class="col-3">
                                                 {{ Auth::user()->name }}
                                             </a>

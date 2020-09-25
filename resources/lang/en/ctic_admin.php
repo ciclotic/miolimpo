@@ -70,4 +70,13 @@ return [
     'observation'    => 'Observation',
     'observation_placeholder'    => 'Type or copy/paste product observation here',
 
+    'help'              => 'Help',
+    'help_url'          => 'Help url',
+    'logo_url'          => 'Logo url',
+    'reference'         => 'Reference',
+    'reference_url'     => 'Reference url',
+    'blog'              => 'Blog',
+    'blog_url'          => 'Blog url',
+    'main_phrase'       => 'Main phrase',
+
 ];

@@ -36,6 +36,14 @@
                 {{ $currentTaxon->name }}
             </a>
         @endforeach
+        @if (setting('ctic.general.defaults.blog'))
+            <a
+                    href="{{ setting('ctic.general.defaults.blog_url') }}"
+                    class="col-md-2 col-6"
+            >
+                {{ setting('ctic.general.defaults.blog') }}
+            </a>
+        @endif
     </div>
     @foreach($taxons as $currentTaxon)
         @if($taxon && $currentTaxon->isInTaxonTree($taxon))

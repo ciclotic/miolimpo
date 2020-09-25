@@ -70,4 +70,12 @@ return [
     'observation'    => 'Observación',
     'observation_placeholder'    => 'Escribe o pega las observacioned del producto',
 
+    'help'              => 'Ayuda',
+    'help_url'          => 'Ayuda url',
+    'logo_url'          => 'Logo url',
+    'reference'         => 'Referencia',
+    'reference_url'     => 'Referencia url',
+    'blog'              => 'Blog',
+    'blog_url'          => 'Blog url',
+    'main_phrase'       => 'Frase principal',
 ];

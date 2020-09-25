@@ -74,6 +74,14 @@ class AppServiceProvider extends ServiceProvider
         $settingsRegistry = $this->app['gears.settings_registry'];
 
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.language', 'es', ['es' => 'es', 'en' => 'en']));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.logo_url', 'https://ulises.miolimpo.org/img/ulises_logo_180.png'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.help', 'Ayuda'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.help_url', '#'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.reference', 'Ahorra 100€'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.reference_url', '#'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.blog', 'Blog'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.blog_url', '#'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.main_phrase', 'Mi Olimpo, pide tu comida online.'));
         $settingsRegistry->add(new SimpleSetting('ctic.styles.colors.main', '#ff9320'));
         $settingsRegistry->add(new SimpleSetting('ctic.mail.smtp.host', 'localhost'));
         $settingsRegistry->add(new SimpleSetting('ctic.mail.smtp.username', ''));
@@ -95,7 +103,15 @@ class AppServiceProvider extends ServiceProvider
 
         $settingsTreeBuilder->addChildNode('general', 'defaults', __('ctic_admin.defaults'))
             ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.country')]], 'appshell.default.country')
-            ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.language')]], 'ctic.general.defaults.language');
+            ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.language')]], 'ctic.general.defaults.language')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url')]], 'ctic.general.defaults.logo_url')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.help')]], 'ctic.general.defaults.help')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.help_url')]], 'ctic.general.defaults.help_url')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.reference')]], 'ctic.general.defaults.reference')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.reference_url')]], 'ctic.general.defaults.reference_url')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.blog')]], 'ctic.general.defaults.blog')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.blog_url')]], 'ctic.general.defaults.blog_url')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.main_phrase')]], 'ctic.general.defaults.main_phrase');
 
         $settingsTreeBuilder->addRootNode('mail', __('ctic_admin.mail'))
             ->addChildNode('mail', 'smtp', __('ctic_admin.smtp'))

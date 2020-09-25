@@ -173,9 +173,9 @@
                                             </a>
                                         @endif
                                         @guest
-                                            <a href="{{ route('login') }}" class="col-6">{{ __('ctic_shop.login') }}</a>
+                                            <a href="{{ route('login') }}" class="col-3">{{ __('ctic_shop.login') }}</a>
                                             @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="col-6">{{ __('ctic_shop.register') }}</a>
+                                                <a href="{{ route('register') }}" class="col-3">{{ __('ctic_shop.register') }}</a>
                                             @endif
                                         @else
                                             <a href="{{ route('account.home') }}" class="col-3">

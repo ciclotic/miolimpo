@@ -17,6 +17,11 @@
 
 Auth::routes();
 
+Route::post(
+    'stripe/webhook',
+    '\App\Http\Controllers\WebhookController@handleWebhook'
+);
+
 Route::get('/home', 'Account\\HomeController@index')->name('home');
 Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
     Route::get('/home', 'Account\\HomeController@index')->name('home');

@@ -31,5 +31,7 @@ return [
             ]
         ],
         \App\Ctic\Product\Providers\ModuleServiceProvider::class,
+        \App\Ctic\PaymentMethod\Providers\ModuleServiceProvider::class,
+        \App\Ctic\ShippingMethod\Providers\ModuleServiceProvider::class,
     ]
 ];

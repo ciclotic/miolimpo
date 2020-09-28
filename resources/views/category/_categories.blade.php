@@ -6,7 +6,7 @@
             @guest
                 <a href="{{ route('login') }}" class="col-md-2 col-6">{{ __('ctic_shop.login') }}</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}">{{ __('ctic_shop.register') }}</a>
+                    <a href="{{ route('register') }}" class="col-md-2 col-6">{{ __('ctic_shop.register') }}</a>
                 @endif
             @else
                 <a href="{{ route('account.home') }}" class="col-md-2 col-6">
@@ -24,6 +24,18 @@
                     @csrf
                 </form>
             @endguest
+        </div>
+        <div class="row background-grey-scale background-grey-scale-0 auth-style w-100">
+            @if (setting('ctic.general.defaults.help'))
+                <a href="{{ setting('ctic.general.defaults.help_url') }}" class="col-md-2 col-6">
+                    {{ setting('ctic.general.defaults.help') }}
+                </a>
+            @endif
+            @if (setting('ctic.general.defaults.reference'))
+                <a href="{{ setting('ctic.general.defaults.reference_url') }}" class="col-md-2 col-6">
+                    {{ setting('ctic.general.defaults.reference') }}
+                </a>
+            @endif
         </div>
     @endif
 

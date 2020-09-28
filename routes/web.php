@@ -50,6 +50,8 @@ Route::group(['prefix' => 'cesta', 'as' => 'cart.'], function() {
 });
 
 Route::group(['prefix' => 'caja', 'as' => 'checkout.'], function() {
+    Route::get('pay-redsys', 'CheckoutController@payRedsys')->name('pay-redsys');
+    Route::get('pay-paypal', 'CheckoutController@payPaypal')->name('pay-paypal');
     Route::get('ver', 'CheckoutController@show')->name('show');
     Route::post('submit', 'CheckoutController@submit')->name('submit');
 });
@@ -64,6 +66,8 @@ Route::group(['prefix' => 'admin/complement', 'as' => 'admin.'], function() {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     Route::resource('group', 'Admin\\GroupController');
+    Route::resource('payment_method', 'Admin\\PaymentMethodController');
+    Route::resource('shipping_method', 'Admin\\ShippingMethodController');
 });
 
 Route::group(['prefix' => 'admin/group_product', 'as' => 'admin.'], function() {

@@ -112,7 +112,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="col-md-2 col-5 background-grey-scale background-grey-scale-0 store-title mt-1">
+                        <div class="col-md-2 col-8 background-grey-scale background-grey-scale-0 store-title mt-1">
                             <a href="{{ url('/') }}">
                                 <img src="{{ setting('ctic.general.defaults.logo_url') }}" title="{{ config('app.name', 'Laravel') }}" />
                                 {{ setting('appshell.ui.name') }}
@@ -121,7 +121,7 @@
                                 <input type="text" class="form-control" aria-label="{{ __('ctic_shop.search') }}" id="header-search-mobile-input">
                             </div>
                         </div>
-                        <div class="col-5 main-menu nav-item header-icon">
+                        <div class="col-2 main-menu nav-item header-icon">
                             <a class="nav-link" href="#" onclick="(document.getElementById('header-search-mobile').style.display === 'block') ? document.getElementById('header-search-mobile').style.display = 'none' : document.getElementById('header-search-mobile').style.display = 'block'; document.getElementById('header-search-mobile-input').focus()">
                                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>

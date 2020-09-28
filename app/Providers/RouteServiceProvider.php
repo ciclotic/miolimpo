@@ -79,6 +79,9 @@ class RouteServiceProvider extends ServiceProvider
         if ($menu = Menu::get('appshell')) {
             $shop = $menu->getItem('shop');
             $shop->addSubItem('product_groups', __('ctic_admin.groups'), ['route' => 'admin.group.index'])->data('icon', 'format-list-bulleted');
+            $settings = $menu->getItem('settings_group');
+            $settings->addSubItem('payment_methods', __('ctic_admin.payment_methods'), ['route' => 'admin.payment_method.index'])->data('icon', 'format-list-bulleted');
+            $settings->addSubItem('shipping_methods', __('ctic_admin.shipping_methods'), ['route' => 'admin.shipping_method.index'])->data('icon', 'format-list-bulleted');
         }
     }
 }

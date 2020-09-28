@@ -12110,7 +12110,7 @@ a:hover {
     margin: 0 auto;
     position: relative;
     width: 260px;
-    height: 40px;
+    line-height: 40px;
   }
 
   #categoriesMenu {

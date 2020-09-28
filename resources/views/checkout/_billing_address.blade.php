@@ -1,8 +1,8 @@
-<h3>Billing Address</h3>
+<h3>{{ __('ctic_shop.billing_address') }}</h3>
 <hr>
 
 <div class="form-group row">
-    <label class="col-form-label col-md-2">{{ __('Country') }}</label>
+    <label class="col-form-label col-md-2">{{ __('ctic_shop.country') }}</label>
     <div class="col-md-10">
         {{ Form::select('billpayer[address][country_id]', $countries->pluck('name', 'id'),
                 setting('appshell.default.country'), [
@@ -18,7 +18,7 @@
 
 <div class="form-group row">
 
-    <label class="col-form-label col-md-2">{{ __('Address') }}</label>
+    <label class="col-form-label col-md-2">{{ __('ctic_shop.address') }}</label>
     <div class="col-md-10">
         {{ Form::text('billpayer[address][address]', null, [
                 'class' => 'form-control' . ($errors->has('billpayer.address.address') ? ' is-invalid' : '')
@@ -32,7 +32,7 @@
 
 <div class="form-group row">
 
-    <label class="col-form-label col-md-2">{{ __('Zip code') }}</label>
+    <label class="col-form-label col-md-2">{{ __('ctic_shop.postal_code') }}</label>
     <div class="col-md-4">
         {{ Form::text('billpayer[address][postalcode]', null, [
                 'class' => 'form-control' . ($errors->has('billpayer.address.postalcode') ? ' is-invalid' : '')
@@ -43,7 +43,7 @@
         @endif
     </div>
 
-    <label class="col-form-label col-md-2">{{ __('City') }}</label>
+    <label class="col-form-label col-md-2">{{ __('ctic_shop.city') }}</label>
     <div class="col-md-4">
         {{ Form::text('billpayer[address][city]', null, [
                 'class' => 'form-control' . ($errors->has('billpayer.address.city') ? ' is-invalid' : '')

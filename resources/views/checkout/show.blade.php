@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-    <li class="breadcrumb-item"><a href="{{ route('product.index') }}">All Products</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('cart.show') }}">Cart</a></li>
-    <li class="breadcrumb-item">Checkout</li>
+    <li class="breadcrumb-item"><a href="{{ route('product.index') }}">{{ __('ctic_shop.all_products') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('cart.show') }}">{{ __('ctic_shop.cart') }}</a></li>
+    <li class="breadcrumb-item">{{ __('ctic_shop.checkout') }}</li>
 
 @stop
 
@@ -19,16 +19,32 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Checkout</div>
+                    <div class="card-header">{{ __('ctic_shop.checkout') }}</div>
 
                     <div class="card-body">
                         @unless ($checkout)
                             <div class="alert alert-warning">
-                                <p>Hey, nothing to check out here!</p>
+                                <p>{{ __('ctic_shop.nothing_checkout') }}</p>
                             </div>
                         @endunless
 
                         @if ($checkout)
+                            @if (!empty($address_books[0]))
+                                <div class="row mb-4">
+                                    <div class="col-9">
+                                        <select class="custom-select mr-sm-2" id="addresse_used">
+                                            <option selected value="0">{{ $address_books[0]->name }}</option>
+                                            @for ($i = 1; $i < count($address_books); $i++)
+                                                <option value="{{ $i }}">{{ $address_books[$i]->name }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="submit" class="btn btn-primary btn-block" onclick="useAddressBook($('#addresse_used').val())">{{ __('ctic_shop.use') }}</button>
+                                    </div>
+                                </div>
+                            @endif
+
                             <form id="checkout" action="{{ route('checkout.submit') }}" method="post">
                                 {{ csrf_field() }}
 
@@ -48,6 +64,46 @@
 
                                 <div class="form-group">
 
+                                    <label class="">{{ __('ctic_shop.payment_methods') }}</label>
+
+                                    <?php $firstChecked = false; ?>
+                                    @foreach ($payment_methods as $payment_method)
+                                        <div class="form-check mt-3">
+                                            <input class="form-check-input" type="radio" name="payment_method_id" id="payment_method-{{ $payment_method->id }}" value="{{ $payment_method->id }}" @if (! $firstChecked) <?php $firstChecked = true; ?> checked @endif>
+                                            <label class="form-check-label" for="payment_method-{{ $payment_method->id }}">
+                                                <strong>{{ $payment_method->name }}</strong>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            {{ $payment_method->observation }}
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group">
+
+                                    <label class="">{{ __('ctic_shop.shipping_methods') }}</label>
+
+                                    <?php $firstChecked = false; ?>
+                                    @foreach ($shipping_methods as $shipping_method)
+                                        <div class="form-check mt-3">
+                                            <input class="form-check-input" type="radio" name="shipping_method_id" id="shipping_method-{{ $shipping_method->id }}" value="{{ $shipping_method->id }}"  @if (! $firstChecked) <?php $firstChecked = true; ?> checked @endif>
+                                            <label class="form-check-label" for="shipping_method-{{ $shipping_method->id }}">
+                                                <strong>{{ $shipping_method->name }}</strong>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            {{ $shipping_method->observation }}
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group">
+
                                     <label class="">{{ __('Order Notes') }}</label>
                                     {{ Form::textarea('notes', null, [
                                             'class' => 'form-control' . ($errors->has('notes') ? ' is-invalid' : ''),
@@ -62,7 +118,7 @@
                                 <hr>
 
                                 <div>
-                                    <button class="btn btn-lg btn-success">Submit Order</button>
+                                    <button class="btn btn-lg btn-primary btn-block">Submit Order</button>
                                 </div>
 
 
@@ -86,6 +142,33 @@
 @section('scripts')
     @if ($checkout)
     <script>
+        function useAddressBook(index) {
+            $('input[name="billpayer[firstname]"]').val(window.addressBooks[index].addressee_name)
+            $('input[name="billpayer[lastname]"]').val(window.addressBooks[index].addressee_surname)
+            $('input[name="shippingAddress[name]"]').val(window.addressBooks[index].addressee_name + ' ' + window.addressBooks[index].addressee_surname)
+            $('input[name="billpayer[address][address]"]').val(window.addressBooks[index].address + ' ' + window.addressBooks[index].address2)
+            $('input[name="shippingAddress[address]"]').val(window.addressBooks[index].address + ' ' + window.addressBooks[index].address2)
+            $('input[name="billpayer[address][postalcode]"]').val(window.addressBooks[index].postal_code)
+            $('input[name="shippingAddress[postalcode]"]').val(window.addressBooks[index].postal_code)
+            $('input[name="billpayer[address][city]"]').val(window.addressBooks[index].town)
+            $('input[name="shippingAddress[city]"]').val(window.addressBooks[index].town)
+        }
+        @if (!empty($address_books[0]))
+            window.addressBooks = []
+            @for ($i = 0; $i < count($address_books); $i++)
+                window.addressBooks[{{ $i }}] = {}
+                window.addressBooks[{{ $i }}].addressee_name = '{{ $address_books[$i]->addressee_name }}'
+                window.addressBooks[{{ $i }}].addressee_surname = '{{ $address_books[$i]->addressee_surname }}'
+                window.addressBooks[{{ $i }}].address = '{{ $address_books[$i]->address }}'
+                window.addressBooks[{{ $i }}].address2 = '{{ $address_books[$i]->address2 }}'
+                window.addressBooks[{{ $i }}].postal_code = '{{ $address_books[$i]->postal_code }}'
+                window.addressBooks[{{ $i }}].town = '{{ $address_books[$i]->town }}'
+                window.addressBooks[{{ $i }}].phone = '{{ $address_books[$i]->phone }}'
+            @endfor
+            $( document ).ready(function() {
+                useAddressBook(0)
+            })
+        @endif
         document.addEventListener("DOMContentLoaded", function(event) {
             new Vue({
                 el: '#checkout',

@@ -1,10 +1,20 @@
+<style>
+    .card-img-top{
+        max-height: 143px;
+        width: auto;
+        position: relative;
+        display: flex;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+</style>
 <article class="card shadow-sm">
     <a href="{{ route('product.show', [($product->taxons->first()) ? $product->taxons->first()->slug : $taxons->first()->slug, $product]) }}">
         <img class="card-img-top"
         @if($product->hasImage())
             src="{{ $product->getThumbnailUrl() }}"
         @else
-            src="{{ setting('ctic.general.defaults.logo_url') }}"
+            src="{{ setting('ctic.general.defaults.logo_url_dark') }}"
         @endif
         alt="{{ $product->name }}" />
     </a>

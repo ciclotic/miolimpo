@@ -75,4 +75,5 @@ return [
     'next_steps'                => 'Next steps',
     'all_right'                 => 'All right!',
     'pay'                       => 'Pay',
+    'shipping'                  => 'Shippìng',
 ];

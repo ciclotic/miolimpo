@@ -34,7 +34,7 @@
                     <input type="hidden" name="Ds_SignatureVersion" value="{{ $redsysVersion }}"/><br>
                     <input type="hidden" name="Ds_MerchantParameters" value="{{ $redsysParams }}"/><br>
                     <input type="hidden" name="Ds_Signature" value="{{ $redsysSignature }}"/><br>
-                    <input type="submit" value="{{ __('ctic_shop.pay') }}">
+                    <input type="submit" class="btn btn-primary" value="{{ __('ctic_shop.pay') }}">
                 </form>
             @endif
             @if (! empty($paypalBussinessEmail))
@@ -49,7 +49,7 @@
                     <input type="hidden" name="item_name_1" value="Importe total del pedido {{ $order->total() }}">
                     <input type="hidden" name="quantity_1" value="1">
                     <input type="hidden" name="amount_1" value="{{ number_format($order->total(),2,".","") }}">
-                    <input type="hidden" name="business" value="{{ setting('ctic.mail.smtp.from_address') }}">
+                    <input type="hidden" name="business" value="{{ setting('ctic.payment.paypal.business_email') }}">
                     <input type="hidden" name="no_shipping" value="1">
                     <input type="hidden" name="no_note" value="0">
                     <input type="hidden" name="currency_code" value="EUR">
@@ -58,7 +58,7 @@
                     <input type="hidden" name="bn" value="{{ setting('ctic.payment.paypal.business_number') }}">
                     <input type="hidden" name="return" value="{{ route('product.index') }}">
 
-                    <input type="submit" value="{{ __('ctic_shop.pay') }}">
+                    <input type="submit" class="btn btn-primary" value="{{ __('ctic_shop.pay') }}">
 
                 </form>
             @endif

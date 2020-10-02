@@ -128,7 +128,7 @@
                                     <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                                 </svg>
                             </a>
-                            @if(Cart::itemCount() > 0)
+                            @if(Cart::itemCount() > 0 && Route::currentRouteName() !== 'checkout.show')
                                 <a class="nav-link" href="#" onclick="showCart()">
                                     <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
@@ -231,7 +231,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                @if(Cart::itemCount() > 0)
+                                @if(Cart::itemCount() > 0 && Route::currentRouteName() !== 'checkout.show')
                                     <div class="col-md-3 col-2 main-menu nav-item header-icon">
                                         <a class="nav-link" href="#" onclick="showCart()">
                                             <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -251,6 +251,7 @@
             </div>
         </nav>
 
+        @if(Cart::itemCount() > 0 && Route::currentRouteName() !== 'checkout.show')
         <div class="cart-widget">
             <div class="row">
                 <div class="col-md-10 col-6">
@@ -262,6 +263,7 @@
             </div>
             @include('cart.cart')
         </div>
+        @endif
 
         <main>
 

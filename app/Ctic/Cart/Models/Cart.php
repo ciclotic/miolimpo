@@ -2,12 +2,12 @@
 
 namespace App\Ctic\Cart\Models;
 
+use App\Ctic\ShippingMethod\Contracts\ShippingMethod;
 use \Vanilo\Cart\Models\Cart as CartBase;
 use Vanilo\Contracts\Buyable;
 
 class Cart extends CartBase
 {
-
     /**
      * @inheritDoc
      */

@@ -75,4 +75,5 @@ return [
     'next_steps'                => 'Próximos pasos',
     'all_right'                 => 'Todo bien!',
     'pay'                       => 'Pagar',
+    'shipping'                  => 'Envío',
 ];

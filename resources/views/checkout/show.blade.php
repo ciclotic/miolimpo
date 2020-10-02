@@ -87,9 +87,9 @@
                                     <label class="">{{ __('ctic_shop.shipping_methods') }}</label>
 
                                     <?php $firstChecked = false; ?>
-                                    @foreach ($shipping_methods as $shipping_method)
+                                    @foreach ($shipping_methods as $key => $shipping_method)
                                         <div class="form-check mt-3">
-                                            <input class="form-check-input" type="radio" name="shipping_method_id" id="shipping_method-{{ $shipping_method->id }}" value="{{ $shipping_method->id }}"  @if (! $firstChecked) <?php $firstChecked = true; ?> checked @endif>
+                                            <input class="form-check-input" onclick="selectShippingPrice({{ $key }})" type="radio" name="shipping_method_id" id="shipping_method-{{ $shipping_method->id }}" value="{{ $shipping_method->id }}"  @if (! $firstChecked) <?php $firstChecked = true; ?> checked @endif>
                                             <label class="form-check-label" for="shipping_method-{{ $shipping_method->id }}">
                                                 <strong>{{ $shipping_method->name }}</strong>
                                             </label>
@@ -167,6 +167,22 @@
             @endfor
             $( document ).ready(function() {
                 useAddressBook(0)
+            })
+        @endif
+        function selectShippingPrice(index) {
+            $('#shipping_price').html(window.shippingMethods[index].price.toFixed(2) + ' €')
+            $('#total_price').html((parseFloat($('#total_price').data('total-without-shipping').replace('.', '').replace(',', '.')) + window.shippingMethods[index].price).toFixed(2) + ' €')
+        }
+        @if (!empty($shipping_methods[0]))
+            window.shippingMethods = []
+            @for ($i = 0; $i < count($shipping_methods); $i++)
+                window.shippingMethods[{{ $i }}] = {}
+                window.shippingMethods[{{ $i }}].name = '{{ $shipping_methods[$i]->name }}'
+                window.shippingMethods[{{ $i }}].id = '{{ $shipping_methods[$i]->id }}'
+                window.shippingMethods[{{ $i }}].price = parseFloat({{ $shipping_methods[$i]->price }})
+            @endfor
+            $( document ).ready(function() {
+                selectShippingPrice(0)
             })
         @endif
         document.addEventListener("DOMContentLoaded", function(event) {

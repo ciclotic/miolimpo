@@ -14,6 +14,7 @@ use Vanilo\Checkout\Contracts\Checkout;
 use Vanilo\Order\Contracts\OrderFactory;
 use Vanilo\Order\Models\OrderProxy;
 use Vanilo\Order\Models\OrderStatus;
+use Vanilo\Product\Models\ProductProxy;
 
 class CheckoutController extends Controller
 {
@@ -143,6 +144,11 @@ class CheckoutController extends Controller
 
     public function submit(CheckoutRequest $request, OrderFactory $orderFactory)
     {
+        // Add shipping to cart.
+        $shippingMethod = ShippingMethodProxy::find($request->get('shipping_method_id'));
+        $this->cart->addItem($shippingMethod);
+
+        // Add order
         $this->checkout->update($request->all());
         $this->checkout->setCustomAttribute('notes', $request->get('notes'));
         $this->checkout->setCart($this->cart);

@@ -110,7 +110,7 @@ class CheckoutController extends Controller
             mail($fromAddress,"Datos cobro VISA",$message,$cabeceras);
         }else
         {
-            $cabeceras = 'From: admin@mandragorashop.com';
+            $cabeceras = 'From: ' . $fromAddress;
             mail($fromAddress,"Acceso " . $merchantName . " cobro VISA ERROR","Acceso al sistema de cobros sin datos",$cabeceras);
         }
 
@@ -119,6 +119,25 @@ class CheckoutController extends Controller
 
     public function payPaypal(Request $request)
     {
+        $fromAddress = setting('ctic.mail.smtp.from_address');
+        $merchantName = setting('appshell.ui.name');
+
+        $order = OrderProxy::find($request->get('invoice'));
+
+        if ($order)
+        {
+            $order->status = new OrderStatus(OrderStatus::COMPLETED);
+            $order->save();
+
+            $missatge = "Mandragora cobro PayPal OK\r\n";
+            $missatge .= "Import cobrat: ".number_format($order->total(),2,",",".")."\r\n";
+        } else {
+            $missatge = $merchantName . " cobro PayPal ERROR";
+        }
+
+        $cabeceras = 'From: ' . $fromAddress;
+        mail($fromAddress,"Datos cobro PayPal",$missatge,$cabeceras);
+
         return redirect(route('product.index'));
     }
 

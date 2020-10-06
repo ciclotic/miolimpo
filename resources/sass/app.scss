@@ -147,6 +147,17 @@ a:hover {
   margin-left: 5px;
 }
 
+footer {
+  background-color: white;
+  height: 100px;
+  position: relative;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  padding: 15px 0;
+  float: left;
+}
+
 @media only screen and (max-width: 600px) {
   #categoriesMenu {
     width: 100%;

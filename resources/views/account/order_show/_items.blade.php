@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        {{ __('Ordered Items') }}
+        {{ __('ctic_shop.ordered_items') }}
     </div>
 
     <div class="card-block">

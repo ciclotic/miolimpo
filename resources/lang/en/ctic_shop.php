@@ -76,4 +76,12 @@ return [
     'all_right'                 => 'All right!',
     'pay'                       => 'Pay',
     'shipping'                  => 'Shippìng',
+
+    'order_confirmation'        => 'Order confirmation',
+    'thankyou_email'            => 'Thanks for your order',
+    'order'                     => 'Order',
+    'order_date'                => 'Order date',
+    'order_total'               => 'Order total',
+    'ordered_items'             => 'Ordered items',
+    'all_rights_reserved'       => 'All rights reserved.',
 ];

@@ -104,6 +104,15 @@ class AppServiceProvider extends ServiceProvider
         $settingsRegistry->add(new SimpleSetting('ctic.mail.smtp.from_address', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.mail.smtp.from_name', ''));
 
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header1_text', 'Accesorios'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header1_url', '#'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header2_text', 'Mochilas'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header2_url', '#'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header3_text', 'Monederos'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header3_url', '#'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header4_text', 'Bolsos'));
+        $settingsRegistry->add(new SimpleSetting('ctic.mail.order.link_header4_url', '#'));
+
         $settingsRegistry->add(new SimpleSetting('ctic.payment.redsys.secret', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.payment.redsys.language', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.payment.redsys.currency', ''));
@@ -113,6 +122,22 @@ class AppServiceProvider extends ServiceProvider
         $settingsRegistry->add(new SimpleSetting('ctic.payment.paypal.business_email', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.payment.paypal.business_number', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.payment.paypal.sandbox', false));
+
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna1_1_text', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna1_1_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna1_2_text', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna1_2_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna2_1_text', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna2_1_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna2_2_text', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna2_2_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna3_1_text', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna3_1_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna3_2_text', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna3_2_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.facebook_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.twitter_url', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.footer.link.instagram_url', ''));
     }
 
     protected function buildSettingsTree()
@@ -147,6 +172,15 @@ class AppServiceProvider extends ServiceProvider
             ->addSettingItem('smtp', ['text', ['label' => __('ctic_admin.encryption')]], 'ctic.mail.smtp.encryption')
             ->addSettingItem('smtp', ['text', ['label' => __('ctic_admin.from_address')]], 'ctic.mail.smtp.from_address')
             ->addSettingItem('smtp', ['text', ['label' => __('ctic_admin.from_name')]], 'ctic.mail.smtp.from_name')
+            ->addChildNode('mail', 'order', __('ctic_admin.order'))
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_text') . ' 1']], 'ctic.mail.order.link_header1_text')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_url') . ' 1']], 'ctic.mail.order.link_header1_url')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_text') . ' 2']], 'ctic.mail.order.link_header2_text')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_url') . ' 2']], 'ctic.mail.order.link_header2_url')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_text') . ' 3']], 'ctic.mail.order.link_header3_text')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_url') . ' 3']], 'ctic.mail.order.link_header3_url')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_text') . ' 4']], 'ctic.mail.order.link_header4_text')
+            ->addSettingItem('order', ['text', ['label' => __('ctic_admin.link_header_url') . ' 4']], 'ctic.mail.order.link_header4_url')
         ;
 
         $settingsTreeBuilder->addRootNode('styles', __('ctic_admin.styles'))
@@ -171,6 +205,25 @@ class AppServiceProvider extends ServiceProvider
             ->addSettingItem('paypal', ['text', ['label' => __('ctic_admin.business_email')]], 'ctic.payment.paypal.business_email')
             ->addSettingItem('paypal', ['text', ['label' => __('ctic_admin.business_number')]], 'ctic.payment.paypal.business_number')
             ->addSettingItem('paypal', ['checkbox', ['label' => 'Sandbox']], 'ctic.payment.paypal.sandbox')
+        ;
+
+        $settingsTreeBuilder->addRootNode('footer', __('ctic_admin.footer'))
+            ->addChildNode('footer', 'links', __('ctic_admin.links'))
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 1 ' . __('ctic_admin.text') . ' 1']], 'ctic.footer.link.columna1_1_text')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 1 ' . __('ctic_admin.link') . ' 1']], 'ctic.footer.link.columna1_1_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 1 ' . __('ctic_admin.text') . ' 2']], 'ctic.footer.link.columna1_2_text')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 1 ' . __('ctic_admin.link') . ' 2']], 'ctic.footer.link.columna1_2_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 2 ' . __('ctic_admin.text') . ' 1']], 'ctic.footer.link.columna2_1_text')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 2 ' . __('ctic_admin.link') . ' 1']], 'ctic.footer.link.columna2_1_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 2 ' . __('ctic_admin.text') . ' 2']], 'ctic.footer.link.columna2_2_text')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 2 ' . __('ctic_admin.link') . ' 2']], 'ctic.footer.link.columna2_2_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 3 ' . __('ctic_admin.text') . ' 1']], 'ctic.footer.link.columna3_1_text')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 3 ' . __('ctic_admin.link') . ' 1']], 'ctic.footer.link.columna3_1_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 3 ' . __('ctic_admin.text') . ' 2']], 'ctic.footer.link.columna3_2_text')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.column') . ' 3 ' . __('ctic_admin.link') . ' 2']], 'ctic.footer.link.columna3_2_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.link') . ' facebook']], 'ctic.footer.link.facebook_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.link') . ' twitter']], 'ctic.footer.link.twitter_url')
+            ->addSettingItem('links', ['text', ['label' => __('ctic_admin.link') . ' instagram']], 'ctic.footer.link.instagram_url')
         ;
     }
 

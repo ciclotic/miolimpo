@@ -7,7 +7,9 @@ use App\Ctic\PaymentMethod\Models\PaymentMethodProxy;
 use App\Ctic\PaymentMethod\Redsys\RedsysAPI;
 use App\Ctic\ShippingMethod\Models\ShippingMethodProxy;
 use App\Http\Requests\CheckoutRequest;
+use App\Mail\OrderCompleted;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Konekt\Address\Models\CountryProxy;
 use Vanilo\Cart\Contracts\CartManager;
 use Vanilo\Checkout\Contracts\Checkout;
@@ -189,6 +191,9 @@ class CheckoutController extends Controller
         } else {
             $paypalBussinessEmail = null;
         }
+
+        Mail::to(auth()->user())->send(new OrderCompleted($order));
+        Mail::to(setting('ctic.mail.smtp.from_address'))->send(new OrderCompleted($order));
 
         return view('checkout.thankyou', array_merge(
             [

@@ -110,4 +110,12 @@ return [
     'business_number'   => 'Business number',
     'thankyou_next_steps'    => 'Order next steps',
 
+    'link_header_text' => 'Link header text',
+    'link_header_url' => 'Link header url',
+
+    'footer' => 'Footer',
+    'links' => 'Links',
+    'column' => 'Column',
+    'link' => 'Link',
+    'text' => 'Text',
 ];

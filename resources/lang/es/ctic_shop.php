@@ -76,4 +76,12 @@ return [
     'all_right'                 => 'Todo bien!',
     'pay'                       => 'Pagar',
     'shipping'                  => 'Envío',
+
+    'order_confirmation'        => 'Confirmación de pedido',
+    'thankyou_email'            => 'Gracias por tu pedido',
+    'order'                     => 'Pedido',
+    'order_date'                => 'Fecha pedido',
+    'order_total'               => 'Total pedido',
+    'ordered_items'             => 'Items pedidos',
+    'all_rights_reserved'       => 'Todos los derechos reservados.',
 ];

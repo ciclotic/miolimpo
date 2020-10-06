@@ -293,6 +293,84 @@
                 </div>
             </div>
         </main>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-12">
+                        @if (setting('ctic.footer.link.columna1_1_text'))
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ setting('ctic.footer.link.columna1_1_url') }}">{{ setting('ctic.footer.link.columna1_1_text') }}</a>
+                            </div>
+                        </div>
+                        @endif
+                        @if (setting('ctic.footer.link.columna1_2_text'))
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ setting('ctic.footer.link.columna1_2_url') }}">{{ setting('ctic.footer.link.columna1_2_text') }}</a>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="col-md-3 col-12">
+                        @if (setting('ctic.footer.link.columna2_1_text'))
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ setting('ctic.footer.link.columna2_1_url') }}">{{ setting('ctic.footer.link.columna2_1_text') }}</a>
+                            </div>
+                        </div>
+                        @endif
+                        @if (setting('ctic.footer.link.columna2_2_text'))
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ setting('ctic.footer.link.columna2_2_url') }}">{{ setting('ctic.footer.link.columna2_2_text') }}</a>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="col-md-3 col-12">
+                        @if (setting('ctic.footer.link.columna3_1_text'))
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ setting('ctic.footer.link.columna3_1_url') }}">{{ setting('ctic.footer.link.columna3_1_text') }}</a>
+                            </div>
+                        </div>
+                        @endif
+                        @if (setting('ctic.footer.link.columna3_2_text'))
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <a href="{{ setting('ctic.footer.link.columna3_2_url') }}">{{ setting('ctic.footer.link.columna3_2_text') }}</a>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <div class="row">
+                        @if (setting('ctic.footer.link.facebook_url'))
+                            <div class="col-4">
+                                <a href="{{ setting('ctic.footer.link.facebook_url') }}" target="_blank"><img width="32" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMC8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMtU1ZHLTIwMDEwOTA0L0RURC9zdmcxMC5kdGQnPjxzdmcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMzIgMzIiIGhlaWdodD0iMzJweCIgaWQ9IkxheWVyXzEiIHZlcnNpb249IjEuMCIgdmlld0JveD0iMCAwIDMyIDMyIiB3aWR0aD0iMzJweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGc+PGNpcmNsZSBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGN4PSIxNiIgY3k9IjE2IiBmaWxsPSIjM0I1OTk4IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHI9IjE2Ii8+PHBhdGggZD0iTTIyLDMyVjIwaDRsMS01aC01di0yYzAtMiwxLjAwMi0zLDMtM2gyVjVjLTEsMC0yLjI0LDAtNCwwYy0zLjY3NSwwLTYsMi44ODEtNiw3djNoLTR2NWg0djEySDIyICAgeiIgZmlsbD0iI0ZGRkZGRiIgaWQ9ImZfMl8iLz48L2c+PGcvPjxnLz48Zy8+PGcvPjxnLz48Zy8+PC9zdmc+" alt="Facebook {{ setting('appshell.ui.name') }}" /></a>
+                            </div>
+                        @endif
+                        @if (setting('ctic.footer.link.twitter_url'))
+                            <div class="col-4">
+                                <a href="{{ setting('ctic.footer.link.twitter_url') }}" target="_blank"><img width="32" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ4IDQ4IiBpZD0iTGF5ZXJfMSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxjaXJjbGUgY3g9IjI0IiBjeT0iMjQiIGZpbGw9IiMxQ0I3RUIiIHI9IjI0Ii8+PGc+PGc+PHBhdGggZD0iTTM2LjgsMTUuNGMtMC45LDAuNS0yLDAuOC0zLDAuOWMxLjEtMC43LDEuOS0xLjgsMi4zLTMuMWMtMSwwLjYtMi4xLDEuMS0zLjQsMS40Yy0xLTEuMS0yLjMtMS44LTMuOC0xLjggICAgYy0yLjksMC01LjMsMi41LTUuMyw1LjdjMCwwLjQsMCwwLjksMC4xLDEuM2MtNC40LTAuMi04LjMtMi41LTEwLjktNS45Yy0wLjUsMC44LTAuNywxLjgtMC43LDIuOWMwLDIsMC45LDMuNywyLjMsNC43ICAgIGMtMC45LDAtMS43LTAuMy0yLjQtMC43YzAsMCwwLDAuMSwwLDAuMWMwLDIuNywxLjgsNSw0LjIsNS42Yy0wLjQsMC4xLTAuOSwwLjItMS40LDAuMmMtMC4zLDAtMC43LDAtMS0wLjEgICAgYzAuNywyLjMsMi42LDMuOSw0LjksMy45Yy0xLjgsMS41LTQuMSwyLjQtNi41LDIuNGMtMC40LDAtMC44LDAtMS4zLTAuMWMyLjMsMS42LDUuMSwyLjYsOC4xLDIuNmM5LjcsMCwxNS04LjYsMTUtMTYuMSAgICBjMC0wLjIsMC0wLjUsMC0wLjdDMzUuMiwxNy42LDM2LjEsMTYuNiwzNi44LDE1LjR6IiBmaWxsPSIjRkZGRkZGIi8+PC9nPjwvZz48L3N2Zz4=" alt="Twitter {{ setting('appshell.ui.name') }}" /></a>
+                            </div>
+                        @endif
+                        @if (setting('ctic.footer.link.instagram_url'))
+                            <div class="col-4">
+                                <a href="{{ setting('ctic.footer.link.instagram_url') }}" target="_blank"><img width="32" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDEwMjQgMTAyNCIgaGVpZ2h0PSIxMDI0cHgiIGlkPSJJbnN0YWdyYW1fMl8iIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgd2lkdGg9IjEwMjRweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGcgaWQ9IkJhY2tncm91bmQiPjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KDAuOTM5NyAwLjM0MjEgMC4zNDIxIC0wLjkzOTcgMjc2LjIwNDIgNzY1LjgyODQpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImJnXzFfIiB4MT0iNDYzLjk1MjYiIHgyPSItMTk0LjQ4MjkiIHkxPSItNzMuMTE0MyIgeTI9IjcxMS40NDc5Ij48c3RvcCBvZmZzZXQ9IjAiIHN0eWxlPSJzdG9wLWNvbG9yOiMyMDI1NEMiLz48c3RvcCBvZmZzZXQ9IjAuMDU3MSIgc3R5bGU9InN0b3AtY29sb3I6IzI5MjU0RCIvPjxzdG9wIG9mZnNldD0iMC4xNTAyIiBzdHlsZT0ic3RvcC1jb2xvcjojNDEyMzRGIi8+PHN0b3Agb2Zmc2V0PSIwLjI2NzkiIHN0eWxlPSJzdG9wLWNvbG9yOiM2OTIxNTIiLz48c3RvcCBvZmZzZXQ9IjAuNDAzOSIgc3R5bGU9InN0b3AtY29sb3I6I0EwMUY1NyIvPjxzdG9wIG9mZnNldD0iMC41MzMzIiBzdHlsZT0ic3RvcC1jb2xvcjojREExQzVDIi8+PHN0b3Agb2Zmc2V0PSIwLjU5MjQiIHN0eWxlPSJzdG9wLWNvbG9yOiNEQzI1NUEiLz48c3RvcCBvZmZzZXQ9IjAuNjg4OSIgc3R5bGU9InN0b3AtY29sb3I6I0UxM0Q1NiIvPjxzdG9wIG9mZnNldD0iMC44MTA2IiBzdHlsZT0ic3RvcC1jb2xvcjojRUE2NTRFIi8+PHN0b3Agb2Zmc2V0PSIwLjk1MTUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGNjlDNDQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiNGQkIwNDAiLz48L2xpbmVhckdyYWRpZW50PjxjaXJjbGUgY3g9IjUxMi4wMDEiIGN5PSI1MTIiIGZpbGw9InVybCgjYmdfMV8pIiBpZD0iYmciIHI9IjUxMiIvPjwvZz48ZyBpZD0iSW5zdGFncmFtXzNfIj48Y2lyY2xlIGN4PSI2NTguNzY1IiBjeT0iMzY0LjU2MyIgZmlsbD0iI0ZGRkZGRiIgcj0iMzMuMTM2Ii8+PGNpcmNsZSBjeD0iNTEyLjAwMSIgY3k9IjUxMiIgZmlsbD0ibm9uZSIgcj0iMTIxLjQxMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iNDUiLz48cGF0aCBkPSJNMjU1LjM1OCw2MTIuNTA2YzAsOTEuMTI3LDczLjg3NCwxNjUsMTY1LDE2NSAgIGgxODMuMjgzYzkxLjEyNywwLDE2NS03My44NzMsMTY1LTE2NVY0MTEuNDk1YzAtOTEuMTI3LTczLjg3My0xNjUtMTY1LTE2NUg0MjAuMzU4Yy05MS4xMjcsMC0xNjUsNzMuODczLTE2NSwxNjVWNjEyLjUwNnoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2Utd2lkdGg9IjQ1Ii8+PC9nPjwvc3ZnPg==" alt="Instagram {{ setting('appshell.ui.name') }}" /></a>
+                            </div>
+                        @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center text-primary">
+                        © {{ date('Y') }} {{ setting('appshell.ui.name') }}. {{ __('ctic_shop.all_rights_reserved') }}
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->

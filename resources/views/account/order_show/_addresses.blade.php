@@ -2,7 +2,7 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
-                {{ __('Bill To') }}
+                {{ __('ctic_shop.bill_to') }}
             </div>
 
             <?php
@@ -26,7 +26,7 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
-                {{ __('Ship To') }}
+                {{ __('ctic_shop.ship_to') }}
             </div>
 
             <?php $shippingAddress = $order->getShippingAddress(); ?>

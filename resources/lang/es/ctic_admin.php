@@ -109,4 +109,13 @@ return [
     'business_email'    => 'Correo empresa',
     'business_number'   => 'Número empresa',
     'thankyou_next_steps'    => 'Próximos pasos pedido',
+
+    'link_header_text' => 'Texo link cabecera',
+    'link_header_url' => 'Url link header',
+
+    'footer' => 'Footer',
+    'links' => 'Links',
+    'column' => 'Columna',
+    'link' => 'Enlace',
+    'text' => 'Texto',
 ];

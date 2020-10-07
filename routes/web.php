@@ -52,6 +52,7 @@ Route::group(['prefix' => 'cesta', 'as' => 'cart.'], function() {
 Route::group(['prefix' => 'caja', 'as' => 'checkout.'], function() {
     Route::get('pay-redsys', 'CheckoutController@payRedsys')->name('pay-redsys');
     Route::get('pay-paypal', 'CheckoutController@payPaypal')->name('pay-paypal');
+    Route::get('pay-stripe', 'CheckoutController@payStripe')->name('pay-stripe');
     Route::get('ver', 'CheckoutController@show')->name('show');
     Route::post('submit', 'CheckoutController@submit')->name('submit');
 });

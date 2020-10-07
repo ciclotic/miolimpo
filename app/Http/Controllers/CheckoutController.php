@@ -133,13 +133,37 @@ class CheckoutController extends Controller
             $order->save();
 
             $missatge = "Mandragora cobro PayPal OK\r\n";
-            $missatge .= "Import cobrat: ".number_format($order->total(),2,",",".")."\r\n";
+            $missatge .= "Importe cobrado: ".number_format($order->total(),2,",",".")."\r\n";
         } else {
             $missatge = $merchantName . " cobro PayPal ERROR";
         }
 
         $cabeceras = 'From: ' . $fromAddress;
         mail($fromAddress,"Datos cobro PayPal",$missatge,$cabeceras);
+
+        return redirect(route('product.index'));
+    }
+
+    public function payStripe(Request $request)
+    {
+        $fromAddress = setting('ctic.mail.smtp.from_address');
+        $merchantName = setting('appshell.ui.name');
+
+        $order = OrderProxy::find($request->get('invoice'));
+
+        if ($order)
+        {
+            $order->status = new OrderStatus(OrderStatus::COMPLETED);
+            $order->save();
+
+            $missatge = "Mandragora cobro Stripe OK\r\n";
+            $missatge .= "Importe cobrado: ".number_format($order->total(),2,",",".")."\r\n";
+        } else {
+            $missatge = $merchantName . " cobro Stripe ERROR";
+        }
+
+        $cabeceras = 'From: ' . $fromAddress;
+        mail($fromAddress,"Datos cobro Stripe",$missatge,$cabeceras);
 
         return redirect(route('product.index'));
     }
@@ -191,6 +215,32 @@ class CheckoutController extends Controller
         } else {
             $paypalBussinessEmail = null;
         }
+        if ($order->paymentMethod && $order->paymentMethod->gateway === 'stripe') {
+            $stripeSecretKey = setting('ctic.payment.stripe.secret_key');
+            \Stripe\Stripe::setApiKey($stripeSecretKey);
+            $checkout_session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'unit_amount' => str_replace('.', '', number_format($order->total(), 2, '.', '')),
+                        'product_data' => [
+                            'name' => __('ctic_shop.ordered_in') . ' ' . setting('appshell.ui.name'),
+                            'images' => [setting('ctic.general.defaults.logo_url_dark')],
+                        ],
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('checkout.pay-stripe'),
+                'cancel_url' => route('product.index'),
+            ]);
+            $stripeSessionId = $checkout_session->id;
+            $stripePublicKey = setting('ctic.payment.stripe.public_key');
+        } else {
+            $stripeSessionId = null;
+            $stripePublicKey = null;
+        }
 
         $authUser = auth()->user();
         if ($authUser) {
@@ -207,6 +257,9 @@ class CheckoutController extends Controller
                 'redsysSignature'       => $redsysSignature,
 
                 'paypalBussinessEmail'  => $paypalBussinessEmail,
+
+                'stripeSessionId'       => $stripeSessionId,
+                'stripePublicKey'       => $stripePublicKey,
             ],
             $this->getCommonParameters()
         ));

@@ -118,4 +118,7 @@ return [
     'column' => 'Column',
     'link' => 'Link',
     'text' => 'Text',
+    'stripe' => 'Stripe',
+    'public_key' => 'Public key',
+    'secret_key' => 'Secret key',
 ];

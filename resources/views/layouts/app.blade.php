@@ -16,6 +16,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @include('layouts._favicons')
+
+    <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <style>

@@ -22,7 +22,7 @@
         {{ setting('ctic.general.defaults.thankyou_next_steps') }}
 
         <div>
-            @if (empty($redsysVersion) && empty($paypalBussinessEmail))
+            @if (empty($redsysVersion) && empty($paypalBussinessEmail) && empty($stripeSessionId))
                 <a href="{{ route('product.index') }}" class="btn btn-primary">{{ __('ctic_shop.all_right') }}</a>
             @endif
             @if (! empty($redsysVersion))
@@ -36,6 +36,17 @@
                     <input type="hidden" name="Ds_Signature" value="{{ $redsysSignature }}"/><br>
                     <input type="submit" class="btn btn-primary" value="{{ __('ctic_shop.pay') }}">
                 </form>
+            @endif
+            @if (! empty($stripeSessionId))
+                <input type="button" id="stripePayButton" class="btn btn-primary" value="{{ __('ctic_shop.pay') }}" />
+                <script type="text/javascript">
+                    // Create an instance of the Stripe object with your publishable API key
+                    var stripe = Stripe("{{ $stripePublicKey }}");
+                    var checkoutButton = document.getElementById("stripePayButton");
+                    checkoutButton.addEventListener("click", function () {
+                        return stripe.redirectToCheckout({ sessionId: '{{ $stripeSessionId }}' });
+                    })
+                </script>
             @endif
             @if (! empty($paypalBussinessEmail))
                 @if (setting('ctic.payment.paypal.sandbox'))

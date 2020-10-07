@@ -123,6 +123,8 @@ class AppServiceProvider extends ServiceProvider
         $settingsRegistry->add(new SimpleSetting('ctic.payment.paypal.business_email', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.payment.paypal.business_number', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.payment.paypal.sandbox', false));
+        $settingsRegistry->add(new SimpleSetting('ctic.payment.stripe.public_key', ''));
+        $settingsRegistry->add(new SimpleSetting('ctic.payment.stripe.secret_key', ''));
 
         $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna1_1_text', ''));
         $settingsRegistry->add(new SimpleSetting('ctic.footer.link.columna1_1_url', ''));
@@ -207,6 +209,9 @@ class AppServiceProvider extends ServiceProvider
             ->addSettingItem('paypal', ['text', ['label' => __('ctic_admin.business_email')]], 'ctic.payment.paypal.business_email')
             ->addSettingItem('paypal', ['text', ['label' => __('ctic_admin.business_number')]], 'ctic.payment.paypal.business_number')
             ->addSettingItem('paypal', ['checkbox', ['label' => 'Sandbox']], 'ctic.payment.paypal.sandbox')
+            ->addChildNode('payment', 'stripe', __('ctic_admin.stripe'))
+            ->addSettingItem('stripe', ['text', ['label' => __('ctic_admin.public_key')]], 'ctic.payment.stripe.public_key')
+            ->addSettingItem('stripe', ['text', ['label' => __('ctic_admin.secret_key')]], 'ctic.payment.stripe.secret_key')
         ;
 
         $settingsTreeBuilder->addRootNode('footer', __('ctic_admin.footer'))

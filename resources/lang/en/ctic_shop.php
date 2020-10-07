@@ -84,4 +84,6 @@ return [
     'order_total'               => 'Order total',
     'ordered_items'             => 'Ordered items',
     'all_rights_reserved'       => 'All rights reserved.',
+
+    'order_notes_phone'       => 'Order notes (Phone to transportist)',
 ];

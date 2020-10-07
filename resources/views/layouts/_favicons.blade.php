@@ -1,4 +1,5 @@
-<link rel="shortcut icon" href="/favicon.ico">
+<link rel="shortcut icon" href="{{ setting('ctic.general.defaults.favicon') }}">
+<!--
 <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="196x196" href="/favicons/favicon-192.png">
 <link rel="icon" type="image/png" sizes="160x160" href="/favicons/favicon-160.png">
@@ -18,3 +19,4 @@
 <meta name="msapplication-TileColor" content="#FFFFFF">
 <meta name="msapplication-TileImage" content="/favicons/favicon-144.png">
 <meta name="msapplication-config" content="/browserconfig.xml">
+-->

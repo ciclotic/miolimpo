@@ -104,7 +104,7 @@
 
                                 <div class="form-group">
 
-                                    <label class="">{{ __('Order Notes') }}</label>
+                                    <label class="">{{ __('ctic_shop.order_notes_phone') }}</label>
                                     {{ Form::textarea('notes', null, [
                                             'class' => 'form-control' . ($errors->has('notes') ? ' is-invalid' : ''),
                                             'rows' => 3

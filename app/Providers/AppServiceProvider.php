@@ -83,6 +83,7 @@ class AppServiceProvider extends ServiceProvider
         $settingsRegistry = $this->app['gears.settings_registry'];
 
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.language', 'es', ['es' => 'es', 'en' => 'en']));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.favicon', 'https://www.miolimpo.org/img/miolimpo.png'));
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.logo_url', 'https://ulises.miolimpo.org/img/ulises_logo_400_white.png'));
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.logo_url_dark', 'https://ulises.miolimpo.org/img/ulises_logo_180.png'));
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.help', 'Ayuda'));
@@ -152,6 +153,7 @@ class AppServiceProvider extends ServiceProvider
         $settingsTreeBuilder->addChildNode('general', 'defaults', __('ctic_admin.defaults'))
             ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.country')]], 'appshell.default.country')
             ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.language')]], 'ctic.general.defaults.language')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url')]], 'ctic.general.defaults.favicon')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url')]], 'ctic.general.defaults.logo_url')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url_dark')]], 'ctic.general.defaults.logo_url_dark')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.help')]], 'ctic.general.defaults.help')

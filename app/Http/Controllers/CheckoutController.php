@@ -192,7 +192,10 @@ class CheckoutController extends Controller
             $paypalBussinessEmail = null;
         }
 
-        Mail::to(auth()->user())->send(new OrderCompleted($order));
+        $authUser = auth()->user();
+        if ($authUser) {
+            Mail::to($authUser)->send(new OrderCompleted($order));
+        }
         Mail::to(setting('ctic.mail.smtp.from_address'))->send(new OrderCompleted($order));
 
         return view('checkout.thankyou', array_merge(

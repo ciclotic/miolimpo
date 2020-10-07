@@ -31,6 +31,11 @@
                 <hr>
             @endunless
 
+            @unless(empty($product->observation))
+                <p class="text-secondary">{!!  nl2br($product->observation) !!}</p>
+                <hr>
+            @endunless
+
         </div>
     </div>
 </div>

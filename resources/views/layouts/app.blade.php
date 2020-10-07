@@ -88,6 +88,10 @@
             color: #ffffff;
         }
 
+        .background-white {
+            background-color: white;
+        }
+
         @media only screen and (max-width: 600px) {
             .auth-style a {
                 color: {{ setting('ctic.styles.colors.main') }} !important;
@@ -118,7 +122,9 @@
                                 {{ setting('appshell.ui.name') }}
                             </a>
                             <div class="input-group header-search" id="header-search-mobile">
-                                <input type="text" class="form-control" aria-label="{{ __('ctic_shop.search') }}" id="header-search-mobile-input">
+                                <form action="{{ route('product.index') }}">
+                                    <input type="text" class="form-control" aria-label="{{ __('ctic_shop.search') }}" id="header-search-mobile-input" name="search-term">
+                                </form>
                             </div>
                         </div>
                         <div class="col-2 main-menu nav-item header-icon">
@@ -196,55 +202,59 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-5 input-group header-search">
-                                    <input type="text" class="form-control" aria-label="{{ __('ctic_shop.search') }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                                              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 header-shipping">
-                                    <a href="#">
-                                        <div class="row">
-                                            <div class="col-3 pt-1">
-                                                <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="ml-2 bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+
+
+                            <form action="{{ route('product.index') }}">
+                                <div class="row">
+                                    <div class="col-md-5 input-group header-search">
+                                        <input type="text" class="form-control" aria-label="{{ __('ctic_shop.search') }}" name="search-term">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                                                  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                                                 </svg>
-                                            </div>
-                                            <div class="col-9 pt-1">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        Envío <strong>GRATIS</strong> en 24/48h
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        Desde 60€
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </span>
                                         </div>
-                                    </a>
-                                </div>
-                                @if(Cart::itemCount() > 0 && Route::currentRouteName() !== 'checkout.show')
-                                    <div class="col-md-3 col-2 main-menu nav-item header-icon">
-                                        <a class="nav-link" href="#" onclick="showCart()">
-                                            <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                            </svg>
-                                            {{ __('ctic_shop.cart') }}
-                                            @if (Cart::isNotEmpty())
-                                                <span class="badge badge-pill badge-secondary">{{ Cart::itemCount() }}</span>
-                                            @endif
+                                    </div>
+                                    <div class="col-md-4 header-shipping">
+                                        <a href="#">
+                                            <div class="row">
+                                                <div class="col-3 pt-1">
+                                                    <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="ml-2 bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="col-9 pt-1">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            Envío <strong>GRATIS</strong> en 24/48h
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            Desde 60€
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </a>
                                     </div>
-                                @endif
-                            </div>
+                                    @if(Cart::itemCount() > 0 && Route::currentRouteName() !== 'checkout.show')
+                                        <div class="col-md-3 col-2 main-menu nav-item header-icon">
+                                            <a class="nav-link" href="#" onclick="showCart()">
+                                                <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                </svg>
+                                                {{ __('ctic_shop.cart') }}
+                                                @if (Cart::isNotEmpty())
+                                                    <span class="badge badge-pill badge-secondary">{{ Cart::itemCount() }}</span>
+                                                @endif
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
+                            </form>
                         </div>
                     </div>
                 @endif
@@ -293,6 +303,7 @@
                 </div>
             </div>
         </main>
+
         <footer>
             <div class="container">
                 <div class="row">
@@ -371,6 +382,11 @@
                 </div>
             </div>
         </footer>
+        <div class="fixed-bottom background-white pt-3 pb-3">
+            <div class="container text-primary text-center">
+                @include('cookieConsent::index')
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -378,7 +394,9 @@
     <script type="application/javascript">
         function showCart() {
             $('.cart-widget').css('display', 'block')
-            $('main').css('width', '65%')
+            if ($('.cart-widget').length) {
+                $('main').css('width', '65%')
+            }
         }
         function hideCart() {
             $('.cart-widget').css('display', 'none')

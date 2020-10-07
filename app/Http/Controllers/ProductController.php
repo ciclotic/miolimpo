@@ -31,6 +31,11 @@ class ProductController extends Controller
             $this->productFinder->havingPropertyValuesByName($property, $values);
         }
 
+        $searchTerm = $request->get('search-term');
+        if ($searchTerm) {
+            $this->productFinder->nameContains($searchTerm);
+        }
+
         return view('product.index', array_merge(
             [
                 'products'   => $this->productFinder->getResults(),

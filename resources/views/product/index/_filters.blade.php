@@ -1,7 +1,7 @@
 <div class="accordion" id="accordionFilters">
     <form class="card card-default mb-3" action="{{
         $taxon ?
-        route('product.category', [$taxon->taxonomy->slug, $taxon])
+        route('product.category', $taxon->slug)
         :
         route('product.index')
     }}">

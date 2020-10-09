@@ -121,4 +121,6 @@ return [
     'stripe' => 'Stripe',
     'public_key' => 'Public key',
     'secret_key' => 'Secret key',
+    'favicon_url' => 'Favicon url',
+    'logo_url_dark' => 'Logo url dark',
 ];

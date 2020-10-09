@@ -86,5 +86,8 @@ return [
     'all_rights_reserved'       => 'Todos los derechos reservados.',
 
     'order_notes_phone'       => 'Notas del pedido (Teléfono para el transportista)',
-    'ordered_in'    => 'Pedido en',
+    'ordered_in'              => 'Pedido en',
+
+    'thankyou_register' => 'Gracias por registrate.',
+    'your_data'         => 'Tus datos',
 ];

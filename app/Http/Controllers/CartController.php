@@ -113,7 +113,13 @@ class CartController extends Controller
 
         flash()->success(__( 'ctic_shop.has_been_added', ['name' => $product->name]));
 
-        return redirect()->route('product.index', ['show-cart' => true]);
+        $url = url()->previous();
+        if (str_contains($url, '?')) {
+            $url .= '&show-cart=true';
+        } else {
+            $url .= '?show-cart=true';
+        }
+        return redirect()->to($url);
     }
 
     public function remove(CartItem $cart_item)
@@ -128,7 +134,13 @@ class CartController extends Controller
         Cart::removeItem($cart_item);
         flash()->info(__('ctic_shop.has_been_removed', ['name' => $cart_item->getBuyable()->getName()]));
 
-        return redirect()->route('product.index', ['show-cart' => true]);
+        $url = url()->previous();
+        if (str_contains($url, '?')) {
+            $url .= '&show-cart=true';
+        } else {
+            $url .= '?show-cart=true';
+        }
+        return redirect()->to($url);
     }
 
     public function update(CartItem $cart_item, Request $request)

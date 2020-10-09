@@ -73,7 +73,7 @@
                 <table cellpadding="0" cellspacing="0" class="es-header" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
                     <tr style="border-collapse:collapse">
                         <td align="center" style="padding:0;Margin:0">
-                            <table class="es-header-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FEF5E4;width:600px" cellspacing="0" cellpadding="0" bgcolor="#fef5e4" align="center">
+                            <table class="es-header-body" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:{{ setting('ctic.styles.colors.main') }};width:600px" cellspacing="0" cellpadding="0" bgcolor="#fef5e4" align="center">
                                 <tr style="border-collapse:collapse">
                                     <td align="left" style="Margin:0;padding-top:5px;padding-bottom:5px;padding-left:15px;padding-right:15px">
                                         <!--[if mso]><table style="width:570px" cellpadding="0" cellspacing="0"><tr><td style="width:180px" valign="top"><![endif]-->
@@ -82,7 +82,7 @@
                                                 <td class="es-m-p0r" valign="top" align="center" style="padding:0;Margin:0;width:180px">
                                                     <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                         <tr style="border-collapse:collapse">
-                                                            <td class="es-m-p0l es-m-txt-c" align="left" style="padding:0;Margin:0;padding-left:15px;font-size:0"><a href="{{ route('product.index') }}" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#999999"><img src="{{ setting('ctic.general.defaults.logo_url_dark') }}" alt="{{ setting('appshell.ui.name') }}" title="{{ setting('appshell.ui.name') }}" width="118" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                                                            <td class="es-m-p0l es-m-txt-c" align="left" style="padding:0;Margin:0;padding-left:15px;font-size:0"><a href="{{ route('product.index') }}" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#999999"><img src="{{ setting('ctic.general.defaults.logo_url') }}" alt="{{ setting('appshell.ui.name') }}" title="{{ setting('appshell.ui.name') }}" width="118" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
                                                         </tr>
                                                     </table></td>
                                             </tr>
@@ -141,7 +141,7 @@
                                         <table class="es-left" cellspacing="0" cellpadding="0" align="left" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
                                             <tr style="border-collapse:collapse">
                                                 <td class="es-m-p20b" align="left" style="padding:0;Margin:0;width:280px">
-                                                    <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#FEF9EF;border-color:#EFEFEF;border-width:1px 0px 1px 1px;border-style:solid" width="100%" cellspacing="0" cellpadding="0" bgcolor="#fef9ef" role="presentation">
+                                                    <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:{{ setting('ctic.styles.colors.main') }};border-color:#EFEFEF;border-width:1px 0px 1px 1px;border-style:solid" width="100%" cellspacing="0" cellpadding="0" bgcolor="{{ setting('ctic.styles.colors.main') }}" role="presentation">
                                                         <tr style="border-collapse:collapse">
                                                             <td align="left" style="Margin:0;padding-bottom:10px;padding-top:20px;padding-left:20px;padding-right:20px"><h4 style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'trebuchet ms', helvetica, sans-serif">{{ __('ctic_shop.summary') }}:</h4></td>
                                                         </tr>
@@ -169,13 +169,55 @@
                                         <table class="es-right" cellspacing="0" cellpadding="0" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
                                             <tr style="border-collapse:collapse">
                                                 <td align="left" style="padding:0;Margin:0;width:280px">
-                                                    <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#FEF9EF;border-width:1px;border-style:solid;border-color:#EFEFEF" width="100%" cellspacing="0" cellpadding="0" bgcolor="#fef9ef" role="presentation">
+                                                    <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:{{ setting('ctic.styles.colors.main') }};border-width:1px;border-style:solid;border-color:#EFEFEF" width="100%" cellspacing="0" cellpadding="0" bgcolor="{{ setting('ctic.styles.colors.main') }}" role="presentation">
                                                         <tr style="border-collapse:collapse">
                                                             <td align="left" style="Margin:0;padding-bottom:10px;padding-top:20px;padding-left:20px;padding-right:20px"><h4 style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'trebuchet ms', helvetica, sans-serif">{{ __('ctic_shop.ship_to') }}:<br></h4></td>
                                                         </tr>
                                                         <?php $shippingAddress = $order->getShippingAddress(); ?>
                                                         <tr style="border-collapse:collapse">
                                                             <td align="left" style="padding:0;Margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $shippingAddress->getName() }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $shippingAddress->getAddress() }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $shippingAddress->getCity() }}@if($shippingAddress->getPostalCode()), {{ $shippingAddress->getPostalCode() }} @endif, {{ $shippingAddress->country->name }}</p></td>
+                                                        </tr>
+                                                    </table></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="es-content-body" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px">
+                                <tr style="border-collapse:collapse">
+                                    <td align="left" style="Margin:0;padding-top:20px;padding-left:20px;padding-right:20px;padding-bottom:30px">
+                                        <!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr><td style="width:280px" valign="top"><![endif]-->
+                                        <table class="es-left" cellspacing="0" cellpadding="0" align="left" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
+                                            <tr style="border-collapse:collapse">
+                                                <td class="es-m-p20b" align="left" style="padding:0;Margin:0;width:280px">
+                                                    <table class="es-right" cellspacing="0" cellpadding="0" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
+                                                        <tr style="border-collapse:collapse">
+                                                            <td align="left" style="padding:0;Margin:0;width:280px">
+                                                                <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:{{ setting('ctic.styles.colors.main') }};border-width:1px;border-style:solid;border-color:#EFEFEF" width="100%" cellspacing="0" cellpadding="0" bgcolor="{{ setting('ctic.styles.colors.main') }}" role="presentation">
+                                                                    <tr style="border-collapse:collapse">
+                                                                        <td align="left" style="Margin:0;padding-bottom:10px;padding-top:20px;padding-left:20px;padding-right:20px"><h4 style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'trebuchet ms', helvetica, sans-serif">{{ __('ctic_shop.bill_to') }}:<br></h4></td>
+                                                                    </tr>
+                                                                    <?php $billpayer = $order->getBillpayer(); ?>
+                                                                    <?php $billingAddress = $billpayer->getBillingAddress(); ?>
+                                                                    <tr style="border-collapse:collapse">
+                                                                        <td align="left" style="padding:0;Margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $billpayer->getFirstname() . ' ' . $billpayer->getLastname() . ' - ' . $billpayer->getCompanyName() . ' ' . $billpayer->tax_nr }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $billingAddress->getAddress() }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $billingAddress->getCity() }}@if($billingAddress->getPostalCode()), {{ $billingAddress->getPostalCode() }} @endif, {{ $billingAddress->country->name }}</p></td>
+                                                                    </tr>
+                                                                </table></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--[if mso]></td><td style="width:0px"></td><td style="width:280px" valign="top"><![endif]-->
+                                        <table class="es-right" cellspacing="0" cellpadding="0" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
+                                            <tr style="border-collapse:collapse">
+                                                <td align="left" style="padding:0;Margin:0;width:280px">
+                                                    <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:{{ setting('ctic.styles.colors.main') }};border-width:1px;border-style:solid;border-color:#EFEFEF" width="100%" cellspacing="0" cellpadding="0" bgcolor="#fef9ef" role="presentation">
+                                                        <tr style="border-collapse:collapse">
+                                                            <td align="left" style="Margin:0;padding-bottom:10px;padding-top:20px;padding-left:20px;padding-right:20px"><h4 style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'trebuchet ms', helvetica, sans-serif">{{ __('ctic_shop.order_notes_phone') }}:<br></h4></td>
+                                                        </tr>
+                                                        <tr style="border-collapse:collapse">
+                                                            <td align="left" style="padding:0;Margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333">{{ $order->notes }}</p></td>
                                                         </tr>
                                                     </table></td>
                                             </tr>

@@ -155,7 +155,7 @@ class AppServiceProvider extends ServiceProvider
         $settingsTreeBuilder->addChildNode('general', 'defaults', __('ctic_admin.defaults'))
             ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.country')]], 'appshell.default.country')
             ->addSettingItem('defaults', ['select', ['label' => __('ctic_admin.language')]], 'ctic.general.defaults.language')
-            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url')]], 'ctic.general.defaults.favicon')
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.favicon_url')]], 'ctic.general.defaults.favicon')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url')]], 'ctic.general.defaults.logo_url')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.logo_url_dark')]], 'ctic.general.defaults.logo_url_dark')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.help')]], 'ctic.general.defaults.help')

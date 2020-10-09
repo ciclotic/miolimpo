@@ -86,5 +86,8 @@ return [
     'all_rights_reserved'       => 'All rights reserved.',
 
     'order_notes_phone'       => 'Order notes (Phone to transportist)',
-    'ordered_in'    => 'Ordered in',
+    'ordered_in'              => 'Ordered in',
+
+    'thankyou_register' => 'Thank you to register.',
+    'your_data'         => 'Your data',
 ];

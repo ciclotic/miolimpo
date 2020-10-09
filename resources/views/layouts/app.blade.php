@@ -91,6 +91,26 @@
             color: #ffffff;
         }
 
+        .background-grey-scale-1 {
+            background-color: #fcfcfc;
+        }
+
+        .background-grey-scale-2 {
+            background-color: #f9f9f9;
+        }
+
+        .background-grey-scale-3 {
+            background-color: #f8f8f8;
+        }
+
+        .background-grey-scale-4 {
+            background-color: #f8f8f8;
+        }
+
+        .background-grey-scale-5 {
+            background-color: #f8f8f8;
+        }
+
         .background-white {
             background-color: white;
         }
@@ -221,7 +241,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 header-shipping">
-                                        <a href="#">
+                                        <!--<a href="#">
                                             <div class="row">
                                                 <div class="col-3 pt-1">
                                                     <svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="ml-2 bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -241,7 +261,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </a>-->
                                     </div>
                                     @if(Cart::itemCount() > 0 && Route::currentRouteName() !== 'checkout.show')
                                         <div class="col-md-3 col-2 main-menu nav-item header-icon">
@@ -385,11 +405,7 @@
                 </div>
             </div>
         </footer>
-        <div class="fixed-bottom background-white pt-3 pb-3">
-            <div class="container text-primary text-center">
-                @include('cookieConsent::index')
-            </div>
-        </div>
+        @include('cookieConsent::index')
     </div>
 
     <!-- Scripts -->

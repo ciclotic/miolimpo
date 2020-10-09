@@ -10,9 +10,10 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
                 @include('product.index._filters', ['properties' => $properties, 'filters' => $filters])
-
+            </div>
+            <div class="col-md-9">
                 @if($taxon && $taxon->children->count())
                     <div class="card card-default mb-3">
                         <div class="card-body">

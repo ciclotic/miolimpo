@@ -182,6 +182,7 @@ class CheckoutController extends Controller
         $order = $orderFactory->createFromCheckout($this->checkout);
         $order->shipping_method_id = $request->get('shipping_method_id', null);
         $order->payment_method_id = $request->get('payment_method_id', null);
+        $order->notes = $request->get('notes');
         $order->save();
         $this->cart->destroy();
 
@@ -220,6 +221,7 @@ class CheckoutController extends Controller
             \Stripe\Stripe::setApiKey($stripeSecretKey);
             $checkout_session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
+                "locale" => 'es',
                 'line_items' => [[
                     'price_data' => [
                         'currency' => 'eur',

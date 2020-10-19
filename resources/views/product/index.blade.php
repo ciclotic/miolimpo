@@ -1,5 +1,34 @@
 @extends('layouts.app')
 
+@section('title') @if($taxon) @include('product._titles') @else {{ __('ctic_shop.all_products') }} @endif @stop
+
+@section('metas')
+    @if($products->isEmpty())
+        <?php $img = url('/') . 'images/product-medium.jpg'; ?>
+    @else
+        <?php $firstProduct = $products[0]; ?>
+        <?php $img = $firstProduct->getMedia()->first() ? $firstProduct->getMedia()->first()->getUrl('medium') : url('/') . '/images/product-medium.jpg' ?>
+    @endif
+    @if($taxon)
+        <meta name="description" content="{!!  nl2br($taxon->name) !!}" />
+        <meta property="og:description" content="{!!  nl2br($taxon->name) !!}" />
+        <meta property="article:published_time" content="{{ $taxon->created_at }}" />
+        <meta property="article:modified_time" content="{{ $taxon->updated_at }}" />
+        <meta property="og:image" content="{{ $img }}" />
+        <meta property="og:image:width" content="540" />
+        <meta property="og:image:height" content="406" />
+    @else
+        <meta name="description" content="{{ __('ctic_shop.all_products') }}" />
+        <meta property="og:description" content="{{ __('ctic_shop.all_products') }}" />
+        <meta property="article:published_time" content="" />
+        <meta property="article:modified_time" content="" />
+        <meta property="og:image" content="{{ $img }}" />
+        <meta property="og:image:width" content="540" />
+        <meta property="og:image:height" content="406" />
+    @endif
+@stop
+
+
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{ route('product.index') }}">{{ __('ctic_shop.all_products') }}</a></li>
     @if($taxon)

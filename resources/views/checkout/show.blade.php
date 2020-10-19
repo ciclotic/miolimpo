@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title'){{ __('ctic_shop.checkout') }}@stop
+
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{ route('product.index') }}">{{ __('ctic_shop.all_products') }}</a></li>
     <li class="breadcrumb-item"><a href="{{ route('cart.show') }}">{{ __('ctic_shop.cart') }}</a></li>

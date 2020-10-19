@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title'){{ __('ctic_shop.details_address_book') }}@stop
+
 @section('content')
 <div class="row">
     @include('account/account-menu')

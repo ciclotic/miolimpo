@@ -5,6 +5,7 @@
 @foreach($property->values() as $propertyValue)
     <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" name="{{ $property->slug }}[]"
+               onclick="$('#filtersForm').submit()"
                value="{{ $propertyValue->value }}" id="filter-{{$propertyValue->id}}"
                @if(in_array($propertyValue->value, $filters)) checked="checked" @endif
         >

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title'){{ __('ctic_shop.my_orders') }}@stop
+
 @section('content')
 <div class="container">
     <div class="row">

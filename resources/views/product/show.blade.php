@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('title') {{ $product->name . ' - ' }}@if ($product->taxons->count()) @include('product._titles', ['taxon' => $product->taxons->first()]) @else {{ __('ctic_shop.all_products') }} @endif @stop
+
+@section('metas')
+    <meta name="description" content="{!!  nl2br($product->description) !!}" />
+    <meta property="og:description" content="{!!  nl2br($product->description) !!}" />
+    <meta property="article:published_time" content="{{ $product->created_at }}" />
+    <meta property="article:modified_time" content="{{ $product->updated_at }}" />
+    <?php $img = $product->getMedia()->first() ? $product->getMedia()->first()->getUrl('medium') : url('/') . '/images/product-medium.jpg' ?>
+    <meta property="og:image" content="{{ $img }}" />
+    <meta property="og:image:width" content="540" />
+    <meta property="og:image:height" content="406" />
+@stop
+
 @section('breadcrumbs')
     <li class="breadcrumb-item"><a href="{{ route('product.index') }}">{{ __('ctic_shop.all_products') }}</a></li>
     @if ($product->taxons->count())

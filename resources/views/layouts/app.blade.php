@@ -7,7 +7,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') - {{ setting('appshell.ui.name') }}</title>
+    <meta property="og:title" content="@yield('title') - {{ setting('appshell.ui.name') }}" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="{{ url()->full() }}" />
+    <meta property="og:url" content="{{ url()->full() }}" />
+    <meta property="og:locale" content="{{ App::getLocale() }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="{{ setting('appshell.ui.name') }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    @yield('metas')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">

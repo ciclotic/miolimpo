@@ -191,7 +191,7 @@ class CheckoutController extends Controller
 
             $urlOKKO = route('product.index');
             $urlMerchant = route('checkout.pay-redsys');
-            $redsysObject->setParameter("DS_MERCHANT_AMOUNT", str_replace(['.', ','], '', $order->total()));
+            $redsysObject->setParameter("DS_MERCHANT_AMOUNT", number_format($order->total(), 2, '', ''));
             $redsysObject->setParameter("DS_MERCHANT_ORDER", strval(time()));
             $redsysObject->setParameter("DS_MERCHANT_MERCHANTCODE", setting('ctic.payment.redsys.merchantcode'));
             $redsysObject->setParameter("DS_MERCHANT_CURRENCY", setting('ctic.payment.redsys.currency'));

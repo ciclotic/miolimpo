@@ -94,6 +94,7 @@ class AppServiceProvider extends ServiceProvider
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.blog_url', '#'));
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.main_phrase', 'Mi Olimpo, pide tu comida online.'));
         $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.thankyou_next_steps', 'Gracias por tu pedido, se te entregará lo más pronto posible después del pago.'));
+        $settingsRegistry->add(new SimpleSetting('ctic.general.defaults.google_analytics', ''));
 
         $settingsRegistry->add(new SimpleSetting('ctic.styles.colors.main', '#ff9320'));
 
@@ -165,7 +166,8 @@ class AppServiceProvider extends ServiceProvider
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.blog')]], 'ctic.general.defaults.blog')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.blog_url')]], 'ctic.general.defaults.blog_url')
             ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.main_phrase')]], 'ctic.general.defaults.main_phrase')
-            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.thankyou_next_steps')]], 'ctic.general.defaults.thankyou_next_steps');
+            ->addSettingItem('defaults', ['text', ['label' => __('ctic_admin.thankyou_next_steps')]], 'ctic.general.defaults.thankyou_next_steps')
+            ->addSettingItem('defaults', ['text', ['label' => __('Google Analytics')]], 'ctic.general.defaults.google_analytics');
 
         $settingsTreeBuilder->addRootNode('mail', __('ctic_admin.mail'))
             ->addChildNode('mail', 'smtp', __('ctic_admin.smtp'))

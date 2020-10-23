@@ -10,8 +10,9 @@
         <?php $img = $firstProduct->getMedia()->first() ? $firstProduct->getMedia()->first()->getUrl('medium') : url('/') . '/images/product-medium.jpg' ?>
     @endif
     @if($taxon)
-        <meta name="description" content="{!!  nl2br($taxon->name) !!}" />
-        <meta property="og:description" content="{!!  nl2br($taxon->name) !!}" />
+        <meta name="description" content="{!!  nl2br($taxon->meta_description) !!}" />
+        <meta name="keywords" content="{!!  nl2br($taxon->meta_keywords) !!}" />
+        <meta property="og:description" content="{!!  nl2br($taxon->meta_description) !!}" />
         <meta property="article:published_time" content="{{ $taxon->created_at }}" />
         <meta property="article:modified_time" content="{{ $taxon->updated_at }}" />
         <meta property="og:image" content="{{ $img }}" />
@@ -19,6 +20,7 @@
         <meta property="og:image:height" content="406" />
     @else
         <meta name="description" content="{{ __('ctic_shop.all_products') }}" />
+        <meta name="keywords" content="{{ __('ctic_shop.all_products') }}" />
         <meta property="og:description" content="{{ __('ctic_shop.all_products') }}" />
         <meta property="article:published_time" content="" />
         <meta property="article:modified_time" content="" />

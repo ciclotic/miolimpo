@@ -10,7 +10,7 @@
                 {{ __('ctic_shop.filters') }}
             </button>
         </div>
-        <ul id="accordionFiltersBody" aria-labelledby="accordionFiltersTitle" data-parent="#accordionFilters" class="list-group list-group-flush collapse show">
+        <ul id="accordionFiltersBody" aria-labelledby="accordionFiltersTitle" data-parent="#accordionFilters" class="list-group list-group-flush collapse @if(! $agent->isMobile()) show @endif">
             @foreach($properties as $property)
                 @include('product.index._property', ['property' => $property, 'filters' => $filters[$property->slug] ?? []])
             @endforeach

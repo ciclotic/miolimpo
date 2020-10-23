@@ -315,7 +315,7 @@
                     &nbsp;
                 </div>
                 <div class="col-md-2 col-6 link-close">
-                    <a href="#" onclick="hideCart()">X</a>
+                    <a href="#" onclick="hideCart()" class="pr-4">X</a>
                 </div>
             </div>
             @include('cart.cart')

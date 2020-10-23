@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('title') {{ $product->name . ' - ' }}@if ($product->taxons->count()) @include('product._titles', ['taxon' => $product->taxons->first()]) @else {{ __('ctic_shop.all_products') }} @endif @stop
+@section('title') {{ $product->ext_title }} @stop
 
 @section('metas')
-    <meta name="description" content="{!!  nl2br($product->description) !!}" />
-    <meta property="og:description" content="{!!  nl2br($product->description) !!}" />
+    <meta name="description" content="{!!  nl2br($product->meta_description) !!}" />
+    <meta property="og:description" content="{!!  nl2br($product->meta_description) !!}" />
+    <meta name="keywords" content="{!!  nl2br($product->meta_keywords) !!}" />
     <meta property="article:published_time" content="{{ $product->created_at }}" />
     <meta property="article:modified_time" content="{{ $product->updated_at }}" />
     <?php $img = $product->getMedia()->first() ? $product->getMedia()->first()->getUrl('medium') : url('/') . '/images/product-medium.jpg' ?>
